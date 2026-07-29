@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Check My DSCR Numbers: Free Scenario Calculator | Parity Lending</title>
+<meta name="description" content="Answer six questions and see your estimated DSCR, LTV, illustrative rate, monthly PITIA, and cash flow. No credit pull, no signup, nothing submitted. Runs entirely in your browser.">
+<meta property="og:title" content="Check My DSCR Numbers: Free Scenario Calculator | Parity Lending">
+<meta property="og:description" content="Answer six questions and see your estimated DSCR, LTV, illustrative rate, monthly PITIA, and cash flow. No credit pull, no signup, nothing submitted. Runs entirely in your browser.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#16224A">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAADPUlEQVR42u2Z70sTcRzH37vv3eZmuo1SWlQgBgaFgisDg7CiB8EQQTKyHoiVPQl8YD8gH9WzgoL+CYnKQNgDHwhZJrZgFZRZD/r1SIKcurm1091dj64uuW132919nX1fz7bB3V6vfY/P924Ag8FgMBgMBoPBYDiMa2tndw/xD/y38tg5HI/WINbF1fbS+h6ElrziC98DpEy3OLXQ5hY7MrnazEdFfLfpA/yRV1Z/AsBpcSojAVlaEQhNeTUAAKgRcpKfm1XE+KYLoCevDaBGCAtiu5MRCE359QFoRLA/QN2Zy/A239KT1wvgdARiu3zV3qv55PMFcDICoSlfKIA2QojjXTM5+XXlBDAoXyyAGmEPkQ/bFYGjKW8UEVg8UZXru+bFqY0dwAZ5lbSE1BEeV6yOwFWCvHYlWB2BqxR5uyLwZR+hvm8YnoYBJ+TXR4AXuPMLj+gF2H7pPoQdXU7KWx2B0JYvNgaLjchGDsfLGZGE9i9fTgAr9glcJS37QpfDUSF34XY1huwNsAHltRH2cegxG4GYkneHIlDWEtYMYCGA1IvzYvbbkzYevRKQLfeQEpANuXCgRYB/Yg0z1gVQ5eW1Jcvkk8/OYunpy08SFtLAc1oRiOPyAJCc6sfyZEx9STMCcVx+eeIcktNv179NK0L+AKHBEbjrjlkun4rN5ftYjdDC46QVpzMSgeSVJ1uaoMhZp+S1EUTglVMRiO6y5wOtls4og/LaCAkFkwd5dFodYVHB3Lz89xIjunMeUoaWvMoXGUk7IhAXfkzn8EE/wEp8HL6mBnC+3TTl7YjgAYKzMh5GV/E4/wpQI1S3doBzb6MprxfBAwRLmRCq/PU07mrlAcBVcAoIwUMlTQGL5LWEeQRuePHAAwRFYLEUeXNjcCU2Cm9TI3h/s6lpYIM8AMzLyH6WEW0XEDG6EorJF98IrcTHTUVIjEWQfvPVrhseMxGMyBvbChuNkBiLIPN+3u67PiMRjMobvxkqFsEheSMRzMibux1WI5BA6z/7BIflC0UwK1/6s8BdN78jNDgC3/4Q7QchYR6B0RqMR2sQG6riLzpz1vq+4Y0gr41gx99mDAaDwWAwGAwGg7Fp+Q2dulRyivAXVwAAAABJRU5ErkJggg==">
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#D43426; --red-d:#B32A1E; --red-l:#E8564A;
+  --navy:#101A35; --navy-d:#0A1128; --navy-l:#1A3796; --navy-bg:#16224A;
+  --silver:#AEB1BD; --rose:#E08A80; --lgray:#EBECEF;
+  --peri:#7C8AC4; --sage:#8DAE9B; --steel:#758C9C; --off:#F9F9F9;
+
+  --bg:#FFFFFF; --bg2:var(--off); --surface:#FFFFFF;
+  --line:#E6E8EE; --line2:#D3D7E1;
+  --text:var(--navy); --body:#505979; --muted:#5A6485; --dim:#8A93A8;
+  --acc:var(--red);
+  --ok:#2E7A55; --warn:#B0740F; --bad:var(--red);
+
+  --r:14px; --max:1180px;
+  --sh:0 1px 2px rgba(16,26,53,.05), 0 8px 24px -12px rgba(16,26,53,.14);
+  --sh-l:0 4px 10px rgba(16,26,53,.07), 0 20px 44px -18px rgba(16,26,53,.22);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--body);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  font-size:16.5px; line-height:1.65; letter-spacing:-.004em;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+h1,h2,h3,h4,.dspl{font-family:'Sora',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+  letter-spacing:-.03em; line-height:1.1; margin:0 0 .5em; color:var(--navy)}
+h1{font-size:clamp(2.35rem,5.4vw,4.15rem); font-weight:800}
+h2{font-size:clamp(1.8rem,3.5vw,2.8rem); font-weight:700}
+h3{font-size:clamp(1.12rem,1.8vw,1.38rem); font-weight:650}
+p{margin:0 0 1.05em}
+a{color:var(--red); text-decoration:none}
+a:hover{text-decoration:underline}
+img,svg{max-width:100%}
+ul{margin:0 0 1em; padding-left:1.15em}
+li{margin:.3em 0}
+strong{color:var(--navy); font-weight:650}
+.wrap{max-width:var(--max); margin:0 auto; padding:0 24px}
+.sec{padding:100px 0; position:relative}
+.sec-tight{padding:66px 0}
+.sec-alt{background:var(--bg2); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+.center{text-align:center}
+.lead{font-size:1.13rem; color:var(--muted); max-width:64ch}
+.center .lead{margin-left:auto;margin-right:auto}
+.mono{font-variant-numeric:tabular-nums; font-feature-settings:"tnum"}
+.hl{color:var(--red)}
+.hl-n{color:var(--navy)}
+
+/* ---------- eyebrow / chips ---------- */
+.eyebrow{
+  display:inline-flex; align-items:center; gap:9px; padding:6px 15px 6px 11px;
+  border:1px solid var(--line2); border-radius:100px; background:#fff;
+  font-size:.73rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--navy); margin-bottom:26px; box-shadow:var(--sh);
+}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px rgba(212,52,38,.14)}
+.tag{display:inline-block;padding:5px 12px;border-radius:100px;font-size:.69rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+.tag-acc{background:rgba(212,52,38,.08); color:var(--red); border:1px solid rgba(212,52,38,.22)}
+.tag-blue{background:rgba(16,26,53,.06); color:var(--navy); border:1px solid rgba(16,26,53,.18)}
+.tag-gold{background:rgba(117,140,156,.12); color:#4C5F6D; border:1px solid rgba(117,140,156,.3)}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  padding:15px 26px; border-radius:9px; font-weight:650; font-size:.97rem;
+  border:1px solid transparent; cursor:pointer; transition:.18s ease; text-decoration:none!important;
+  font-family:'Inter',sans-serif; white-space:nowrap;
+}
+.btn-primary{background:var(--red); color:#fff!important; box-shadow:0 6px 18px -6px rgba(212,52,38,.5)}
+.btn-primary:hover{background:var(--red-d); transform:translateY(-2px); box-shadow:0 12px 26px -8px rgba(212,52,38,.55)}
+.btn-ghost{background:#fff; color:var(--navy)!important; border-color:var(--line2); box-shadow:var(--sh)}
+.btn-ghost:hover{border-color:var(--navy); transform:translateY(-2px)}
+.btn-navy{background:var(--navy); color:#fff!important}
+.btn-navy:hover{background:var(--navy-l); transform:translateY(-2px)}
+.btn-white{background:#fff; color:var(--navy)!important}
+.btn-white:hover{background:var(--lgray); transform:translateY(-2px)}
+.btn-outline-w{background:transparent; color:#fff!important; border-color:rgba(255,255,255,.42)}
+.btn-outline-w:hover{background:rgba(255,255,255,.12); border-color:#fff; transform:translateY(-2px)}
+.btn-sm{padding:11px 18px; font-size:.88rem}
+.btn-lg{padding:18px 32px; font-size:1.04rem}
+.btn-row{display:flex; gap:14px; flex-wrap:wrap}
+.center .btn-row{justify-content:center}
+@media(max-width:520px){
+  .btn{white-space:normal; text-align:center; max-width:100%}
+  .btn-lg{padding:16px 20px; font-size:.99rem}
+  .btn-row>.btn{flex:1 1 100%}
+  .contact-line a{font-size:1.02rem}
+}
+
+/* ---------- nav ---------- */
+.nav{position:sticky; top:0; z-index:80; background:rgba(255,255,255,.9);
+  backdrop-filter:blur(16px) saturate(160%); border-bottom:1px solid var(--line)}
+.nav-in{max-width:var(--max); margin:0 auto; padding:0 24px; height:72px; display:flex; align-items:center; gap:26px}
+.logo{display:flex; align-items:center; text-decoration:none!important; flex:none}
+.logo img{height:34px; width:auto; display:block}
+@media(max-width:420px){.logo img{height:29px}}
+footer .logo img{height:36px}
+.nav-links{display:flex; gap:2px; margin-left:auto; align-items:center}
+.nav-links a{padding:9px 13px; border-radius:7px; color:var(--muted)!important; font-size:.92rem;
+  font-weight:550; text-decoration:none!important; transition:.15s}
+.nav-links a:hover{color:var(--navy)!important; background:var(--off)}
+.nav-links a.on{color:var(--navy)!important; background:var(--lgray)}
+.nav-cta{display:flex; gap:10px; align-items:center}
+.burger{display:none; margin-left:auto; background:#fff;border:1px solid var(--line2);border-radius:8px;padding:9px 11px;cursor:pointer}
+.burger span{display:block;width:18px;height:2px;background:var(--navy);margin:3px 0;border-radius:2px}
+@media(max-width:940px){
+  .nav-in{flex-wrap:wrap; height:auto; min-height:72px; gap:0}
+  .logo{min-height:72px}
+  .nav-links,.nav-cta{display:none}
+  .burger{display:block; margin-left:auto; align-self:center}
+  .nav.open .nav-links{display:flex; flex:1 0 100%; flex-direction:column; align-items:stretch;
+    gap:2px; margin:0; padding:8px 0 12px; border-top:1px solid var(--line)}
+  .nav.open .nav-links a{padding:13px 12px; font-size:1rem}
+  .nav.open .nav-cta{display:flex; flex:1 0 100%; flex-direction:column; gap:10px; padding:0 0 20px}
+  .nav.open .nav-cta .btn{width:100%}
+}
+
+/* ---------- hero ---------- */
+.hero{position:relative; padding:112px 0 92px; overflow:hidden; background:var(--off);
+  border-bottom:1px solid var(--line)}
+.hero:before{
+  content:''; position:absolute; inset:-40% -15% auto -15%; height:900px; pointer-events:none;
+  background:
+    radial-gradient(40% 46% at 18% 34%, rgba(212,52,38,.10), transparent 68%),
+    radial-gradient(44% 50% at 82% 24%, rgba(16,26,53,.10), transparent 66%);
+}
+.hero:after{
+  content:''; position:absolute; inset:0; pointer-events:none; opacity:.65;
+  background-image:linear-gradient(rgba(16,26,53,.055) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(16,26,53,.055) 1px,transparent 1px);
+  background-size:58px 58px;
+  mask-image:radial-gradient(76% 62% at 50% 32%,#000,transparent 78%);
+  -webkit-mask-image:radial-gradient(76% 62% at 50% 32%,#000,transparent 78%);
+}
+.hero .wrap{position:relative; z-index:2}
+.hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr; gap:44px} .hero{padding:72px 0 64px}}
+.hero h1 span.br{display:block}
+.hero-sub{font-size:1.18rem; max-width:56ch; color:var(--muted); margin-bottom:30px}
+.trust{display:flex; flex-wrap:wrap; gap:10px 26px; margin-top:32px; padding-top:24px; border-top:1px solid var(--line2)}
+.trust div{display:flex; align-items:center; gap:8px; font-size:.87rem; color:var(--muted); font-weight:550}
+.trust svg{flex:none}
+
+/* ---------- panel / cards ---------- */
+.panel{background:#fff; border:1px solid var(--line); border-radius:16px; padding:28px; box-shadow:var(--sh-l)}
+.panel-navy{background:var(--navy); border-color:var(--navy); color:#fff}
+.panel-navy h2,.panel-navy h3{color:#fff}
+.card{background:#fff; border:1px solid var(--line); border-radius:var(--r); padding:26px;
+  transition:.2s ease; position:relative; overflow:hidden; box-shadow:var(--sh)}
+.card:hover{border-color:var(--line2); transform:translateY(-3px); box-shadow:var(--sh-l)}
+.card:before{content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--red);
+  opacity:0; transition:.2s}
+.card:hover:before{opacity:1}
+.card h3{margin-bottom:.45em}
+.card p:last-child{margin-bottom:0}
+.card-ico{width:46px;height:46px;border-radius:10px;display:grid;place-items:center;margin-bottom:18px;
+  background:rgba(212,52,38,.07);border:1px solid rgba(212,52,38,.16)}
+.card-ico.b{background:rgba(16,26,53,.05);border-color:rgba(16,26,53,.14)}
+.card-ico.g{background:rgba(117,140,156,.11);border-color:rgba(117,140,156,.26)}
+.grid{display:grid; gap:20px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+/* ---------- stat band ---------- */
+.stats{background:var(--navy-bg); color:#fff}
+.stats-in{display:grid; grid-template-columns:repeat(4,1fr)}
+.stat{padding:36px 26px; border-right:1px solid rgba(255,255,255,.13); position:relative}
+.stat:last-child{border-right:none}
+.stat b{display:block; font-family:'Sora',sans-serif; font-size:clamp(1.7rem,3vw,2.4rem);
+  font-weight:750; letter-spacing:-.035em; color:#fff; line-height:1}
+.stat span{display:block; margin-top:10px; font-size:.83rem; color:rgba(255,255,255,.66); letter-spacing:.02em}
+.stat:after{content:''; position:absolute; left:26px; top:26px; width:22px; height:3px; background:var(--red); border-radius:2px}
+@media(max-width:820px){.stats-in{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:none} .stat:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.13)}}
+
+/* ---------- section head ---------- */
+.shead{max-width:70ch; margin-bottom:50px}
+.shead.center{margin-left:auto;margin-right:auto}
+.shead h2{margin-bottom:.35em}
+.shead p{font-size:1.09rem; margin-bottom:0; color:var(--muted)}
+
+/* ---------- table ---------- */
+.tbl-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:var(--r); background:#fff; box-shadow:var(--sh)}
+table{width:100%; border-collapse:collapse; min-width:560px; font-size:.94rem}
+th,td{padding:15px 20px; text-align:left; border-bottom:1px solid var(--line)}
+th{font-size:.7rem; letter-spacing:.11em; text-transform:uppercase; color:#fff; font-weight:700; background:var(--navy-bg)}
+td{color:var(--muted)}
+td:first-child{color:var(--navy); font-weight:600}
+tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even) td{background:#FBFBFD}
+tbody tr:hover td{background:rgba(212,52,38,.035)}
+
+/* ---------- steps ---------- */
+.steps{display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative}
+.steps:before{content:''; position:absolute; top:23px; left:9%; right:9%; height:2px;
+  background:linear-gradient(90deg,transparent,var(--line2),var(--line2),transparent)}
+.step{padding:0 18px; position:relative}
+.step .n{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#fff;
+  border:2px solid var(--navy); font-family:'Sora',sans-serif;font-weight:700;color:var(--navy);
+  margin-bottom:20px;position:relative;z-index:2;font-size:.95rem}
+.step h3{font-size:1.05rem;margin-bottom:.4em}
+.step p{font-size:.93rem;margin:0}
+@media(max-width:900px){.steps{grid-template-columns:1fr;gap:30px}.steps:before{display:none}.step{padding:0}}
+
+/* ---------- calculator ---------- */
+.field{margin-bottom:19px}
+.field label{display:block; font-size:.77rem; font-weight:700; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--dim); margin-bottom:8px}
+.field .hint{font-size:.78rem;color:var(--dim);margin-top:6px;text-transform:none;letter-spacing:0;font-weight:400}
+input[type=text],input[type=number],input[type=email],input[type=tel],select,textarea{
+  width:100%; padding:13px 15px; border-radius:8px; border:1px solid var(--line2);
+  background:#fff; color:var(--navy); font-size:1rem; font-family:'Inter',sans-serif;
+  font-weight:550; transition:.15s; font-variant-numeric:tabular-nums;
+}
+input:focus,select:focus,textarea:focus{outline:none; border-color:var(--red);
+  box-shadow:0 0 0 3px rgba(212,52,38,.12)}
+select{appearance:none; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%23001F60' stroke-width='1.7' fill='none' stroke-linecap='round'/></svg>");
+  background-repeat:no-repeat; background-position:right 15px center; padding-right:40px}
+.readout{text-align:center; padding:16px 0 20px}
+.readout .lbl{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);font-weight:700}
+.readout .val{font-family:'Sora',sans-serif; font-size:3.9rem; font-weight:800; letter-spacing:-.045em;
+  line-height:1.05; margin:6px 0 4px; color:var(--navy)}
+.readout .verdict{font-size:.95rem; font-weight:600}
+.ok{color:var(--ok)} .warn{color:var(--warn)} .bad{color:var(--bad)}
+.rows{border-top:1px solid var(--line); padding-top:14px}
+.row{display:flex; justify-content:space-between; align-items:baseline; padding:9px 0; font-size:.93rem;
+  border-bottom:1px dashed var(--line)}
+.row:last-child{border-bottom:none}
+.row span{color:var(--muted)}
+.row b{font-weight:650; font-variant-numeric:tabular-nums; color:var(--navy)}
+.assump{font-size:.76rem; color:var(--dim); line-height:1.55; margin-top:16px; padding-top:14px; border-top:1px solid var(--line)}
+
+/* ---------- accordion ---------- */
+.acc{border:1px solid var(--line); border-radius:var(--r); overflow:hidden; background:#fff; box-shadow:var(--sh)}
+.acc details{border-bottom:1px solid var(--line)}
+.acc details:last-child{border-bottom:none}
+.acc summary{padding:20px 24px; cursor:pointer; font-weight:600; font-size:1.01rem; list-style:none;
+  display:flex; justify-content:space-between; align-items:center; gap:20px; transition:.15s;
+  font-family:'Sora',sans-serif; letter-spacing:-.015em; color:var(--navy)}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary:hover{background:var(--off)}
+.acc summary:after{content:'+'; font-size:1.45rem; color:var(--red); font-weight:400; flex:none; line-height:1; transition:.2s}
+.acc details[open] summary:after{transform:rotate(45deg)}
+.acc details[open] summary{color:var(--red)}
+.acc .body{padding:0 24px 22px; color:var(--muted); font-size:.96rem; max-width:78ch}
+.acc .body p:last-child{margin-bottom:0}
+
+/* ---------- cta band ---------- */
+.cta-band{position:relative; overflow:hidden; background:var(--navy-bg); color:#fff}
+.cta-band h2{color:#fff}
+.cta-band .lead{color:rgba(255,255,255,.78)}
+.cta-band:before{content:'';position:absolute;inset:0;
+  background:radial-gradient(50% 70% at 50% 0%, rgba(212,52,38,.30), transparent 70%)}
+.cta-band:after{content:'';position:absolute;inset:0;opacity:.5;
+  background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:54px 54px;
+  mask-image:radial-gradient(70% 90% at 50% 50%,#000,transparent);-webkit-mask-image:radial-gradient(70% 90% at 50% 50%,#000,transparent)}
+.cta-band .wrap{position:relative;z-index:2}
+.contact-line{display:flex;gap:14px 34px;flex-wrap:wrap;justify-content:center;margin-top:28px}
+.contact-line a{display:flex;align-items:center;gap:10px;font-family:'Sora',sans-serif;font-weight:650;
+  font-size:1.15rem;color:#fff!important;text-decoration:none!important}
+.contact-line a:hover{color:#FFD9E0!important}
+
+/* ---------- footer ---------- */
+footer{padding:62px 0 38px; background:var(--navy-bg); color:rgba(255,255,255,.72); font-size:.9rem}
+.f-grid{display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px; margin-bottom:42px}
+@media(max-width:820px){.f-grid{grid-template-columns:1fr 1fr; gap:32px}}
+footer h4{font-size:.72rem; letter-spacing:.13em; text-transform:uppercase; color:rgba(255,255,255,.5);
+  margin-bottom:16px; font-weight:700}
+footer ul{list-style:none; padding:0; margin:0}
+footer li{margin:9px 0}
+footer li a{color:rgba(255,255,255,.72)!important; text-decoration:none!important}
+footer li a:hover{color:#fff!important}
+footer p{color:rgba(255,255,255,.62)}
+.legal{border-top:1px solid rgba(255,255,255,.15); padding-top:24px; color:rgba(255,255,255,.5); font-size:.78rem; line-height:1.7}
+.legal p{color:rgba(255,255,255,.5); font-size:.78rem}
+.legal a{color:rgba(255,255,255,.7)!important}
+.ehl{display:inline-flex;align-items:center;gap:9px;margin-bottom:14px;color:#fff;font-weight:600;font-size:.8rem}
+
+/* ---------- wizard ---------- */
+.wiz-bar{height:4px;background:var(--lgray);border-radius:100px;overflow:hidden;margin-bottom:12px}
+.wiz-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--navy),var(--red));transition:width .35s cubic-bezier(.4,0,.2,1)}
+.wiz-meta{display:flex;justify-content:space-between;font-size:.8rem;color:var(--dim);margin-bottom:24px;letter-spacing:.03em}
+.stepq{display:none;animation:fade .35s ease}
+.stepq.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.stepq h2{font-size:clamp(1.45rem,3vw,2rem);margin-bottom:.3em}
+.stepq .qsub{color:var(--muted);margin-bottom:24px;font-size:1rem}
+.opts{display:grid;gap:10px;margin-bottom:8px}
+.opts.two{grid-template-columns:1fr 1fr}
+@media(max-width:620px){.opts.two{grid-template-columns:1fr}}
+.opt{display:flex;align-items:center;gap:14px;padding:16px 18px;border:1px solid var(--line2);border-radius:10px;
+  background:#fff;cursor:pointer;transition:.15s;font-weight:550;text-align:left;color:var(--navy);
+  font-family:'Inter',sans-serif;font-size:.97rem;width:100%}
+.opt:hover{border-color:var(--red);background:rgba(212,52,38,.035);transform:translateX(3px)}
+.opt.sel{border-color:var(--red);background:rgba(212,52,38,.06);box-shadow:0 0 0 3px rgba(212,52,38,.1)}
+.opt .oi{width:30px;height:30px;border-radius:7px;background:var(--off);display:grid;place-items:center;
+  flex:none;font-size:.82rem;color:var(--red);font-weight:700;border:1px solid var(--line)}
+.opt small{display:block;color:var(--dim);font-weight:400;font-size:.83rem;margin-top:2px}
+.wiz-nav{display:flex;justify-content:space-between;gap:12px;margin-top:26px;padding-top:20px;border-top:1px solid var(--line)}
+.result-hero{text-align:center;padding:10px 0 24px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.pill-big{display:inline-block;padding:8px 20px;border-radius:100px;font-weight:700;font-size:.85rem;
+  letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0; transform:translateY(20px); transition:opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1)}
+.rv.in{opacity:1; transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none} html{scroll-behavior:auto}
+  .bar-fill,.ring-arc{transition:none!important}}
+
+/* ---------- graphics ---------- */
+.fig{width:100%; height:auto; display:block}
+.fig-cap{font-size:.79rem;color:var(--dim);margin-top:12px;text-align:center}
+.bar-fill{transition:width 1.1s cubic-bezier(.22,1,.36,1)}
+.gfx-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px;box-shadow:var(--sh-l)}
+
+/* ---------- misc ---------- */
+.note{border-left:3px solid var(--red); padding:6px 0 6px 18px; color:var(--muted); font-size:.94rem; margin:24px 0}
+.disc{font-size:.78rem; color:var(--dim); line-height:1.6; margin-top:20px}
+.kv{display:flex;gap:10px;align-items:flex-start;margin:10px 0;color:var(--muted);font-size:.95rem}
+.kv .ck{color:var(--red);flex:none;margin-top:3px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
+@media(max-width:900px){.split{grid-template-columns:1fr;gap:36px}}
+.quote{font-family:'Sora',sans-serif;font-size:1.26rem;line-height:1.5;letter-spacing:-.02em;color:var(--navy);font-weight:500}
+.who{margin-top:16px;font-size:.86rem;color:var(--dim)}
+.hr{height:1px;background:var(--line);margin:0}
+
+.wiz-shell{max-width:780px;margin:0 auto}
+.numgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:620px){.numgrid{grid-template-columns:1fr}}
+.res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0}
+@media(max-width:640px){.res-grid{grid-template-columns:1fr}}
+.res-tile{border:1px solid var(--line);border-radius:13px;padding:18px;background:rgba(255,255,255,.03);text-align:center}
+.res-tile .t{font-size:.71rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);font-weight:700}
+.res-tile .v{font-family:'Sora',sans-serif;font-size:1.75rem;font-weight:750;letter-spacing:-.03em;margin-top:6px;line-height:1}
+.lever{display:flex;gap:13px;align-items:flex-start;padding:14px 0;border-bottom:1px dashed rgba(255,255,255,.07)}
+.lever:last-child{border-bottom:none}
+.lever .b{width:26px;height:26px;border-radius:7px;background:rgba(23,227,155,.12);color:var(--acc);display:grid;place-items:center;flex:none;font-weight:700;font-size:.78rem;margin-top:2px}
+.lever div p{margin:0;font-size:.93rem}
+.lever div b{display:block;font-size:.97rem;margin-bottom:2px}
+.adjbox{border-radius:12px}
+.adjbox summary{padding:14px 18px;font-size:.92rem;font-family:'Inter',sans-serif;font-weight:600}
+.adjbox .body{padding:0 18px 8px}
+.adjbox .field{margin-bottom:14px}
+
+/* --- bar comparison --- */
+.barcmp{display:grid;gap:20px}
+.barcmp .blab{display:flex;justify-content:space-between;align-items:baseline;font-size:.86rem;margin-bottom:9px}
+.barcmp .blab span{color:var(--muted);font-weight:550}
+.barcmp .blab b{font-family:'Sora',sans-serif;font-size:1.02rem;color:var(--navy);font-variant-numeric:tabular-nums}
+.barcmp .btrack{height:32px;background:var(--lgray);border-radius:6px;overflow:hidden}
+.barcmp .bfill{height:100%;width:0;border-radius:6px;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+.bf-navy{background:linear-gradient(90deg,#101A35,#2E4BB0)}
+.bf-red{background:linear-gradient(90deg,#D43426,#E8564A)}
+.bf-silver{background:linear-gradient(90deg,#7C8AC4,#AEB1BD)}
+.bf-steel{background:linear-gradient(90deg,#5F7585,#758C9C)}
+
+/* --- ratio meter --- */
+.meter{margin-top:6px}
+.meter .mtrack{position:relative;height:16px;border-radius:8px;overflow:hidden;display:flex}
+.meter .mseg{height:100%}
+.meter .mticks{display:flex;margin-top:9px;font-size:.7rem;color:var(--dim);letter-spacing:.04em;font-weight:600}
+.meter .mticks div{text-align:center}
+.meter .mpoint{position:absolute;top:-7px;width:3px;height:30px;background:var(--navy);border-radius:2px;
+  transform:translateX(-50%);transition:left 1.2s cubic-bezier(.22,1,.36,1)}
+
+/* --- LTV stack --- */
+.ltvstack{display:grid;gap:16px}
+.ltvrow .lhead{display:flex;justify-content:space-between;font-size:.84rem;margin-bottom:8px;color:var(--muted);font-weight:550}
+.ltvrow .lhead b{color:var(--navy);font-family:'Sora',sans-serif}
+.ltvrow .ltrack{display:flex;height:30px;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.ltvrow .lloan{background:linear-gradient(90deg,#101A35,#2E4BB0);display:grid;place-items:center;
+  color:#fff;font-size:.73rem;font-weight:700;letter-spacing:.05em;transition:width 1.2s cubic-bezier(.22,1,.36,1);width:0}
+.ltvrow .ldown{background:var(--lgray);flex:1;display:grid;place-items:center;color:var(--navy);
+  font-size:.73rem;font-weight:700;letter-spacing:.05em}
+
+/* --- doc compare --- */
+.doccmp{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:700px){.doccmp{grid-template-columns:1fr}}
+.doccol{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:var(--sh)}
+.doccol .dh{padding:16px 20px;font-family:'Sora',sans-serif;font-weight:700;font-size:.98rem;
+  display:flex;align-items:center;justify-content:space-between;gap:12px}
+.doccol.a .dh{background:var(--lgray);color:var(--navy)}
+.doccol.b .dh{background:var(--navy);color:#fff}
+.doccol ul{list-style:none;margin:0;padding:14px 20px 18px}
+.doccol li{display:flex;gap:10px;align-items:flex-start;margin:9px 0;font-size:.9rem;color:var(--muted)}
+.doccol li svg{flex:none;margin-top:3px}
+.doccnt{font-size:.72rem;font-weight:700;letter-spacing:.08em;padding:3px 9px;border-radius:100px}
+.doccol.a .doccnt{background:#fff;color:var(--red);border:1px solid rgba(212,52,38,.3)}
+.doccol.b .doccnt{background:rgba(255,255,255,.16);color:#fff}
+
+/* --- icon tiles --- */
+.icogrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:760px){.icogrid{grid-template-columns:repeat(2,1fr)}}
+.icotile{border:1px solid var(--line);border-radius:13px;padding:22px 16px;text-align:center;background:#fff;
+  box-shadow:var(--sh);transition:.2s}
+.icotile:hover{transform:translateY(-3px);box-shadow:var(--sh-l);border-color:var(--line2)}
+.icotile svg{margin:0 auto 12px;display:block}
+.icotile b{display:block;font-family:'Sora',sans-serif;font-size:.95rem;color:var(--navy);font-weight:650}
+.icotile span{display:block;font-size:.79rem;color:var(--dim);margin-top:4px}
+
+/* --- cycle flow --- */
+.cycle{width:100%;height:auto}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav">
+  <div class="nav-in">
+    <a class="logo" href="index.html"><img src="data:image/png;base64,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" alt="Parity Lending"></a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-links"><a href="index.html" class="">Home</a><a href="programs.html" class="">Programs</a><a href="qualify.html" class="on">Check My Numbers</a><a href="faq.html" class="">FAQ</a><a href="contact.html" class="">Contact</a></div>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="tel:+18885550123"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M18 14.1v2.5a1.7 1.7 0 01-1.8 1.7 16.6 16.6 0 01-7.2-2.6 16.3 16.3 0 01-5-5A16.6 16.6 0 011.4 3.5 1.7 1.7 0 013.1 1.7h2.5a1.7 1.7 0 011.7 1.5c.1.8.3 1.6.6 2.4a1.7 1.7 0 01-.4 1.8L6.4 8.5a13.3 13.3 0 005 5l1.1-1.1a1.7 1.7 0 011.8-.4c.8.3 1.6.5 2.4.6a1.7 1.7 0 011.4 1.5z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>(888) 555-0123</a>
+      <a class="btn btn-primary btn-sm" href="qualify.html">Check my numbers</a>
+    </div>
+  </div>
+</nav>
+
+<section class="sec" style="padding:66px 0 40px">
+  <div class="wrap">
+    <div class="wiz-shell">
+      <div class="center rv" style="margin-bottom:36px">
+        <div class="eyebrow"><span class="dot"></span>Scenario Check, 6 questions, no credit pull</div>
+        <h1 style="font-size:clamp(2rem,4.4vw,3.1rem);margin-bottom:.3em">Does your deal pencil?</h1>
+        <p class="lead center" style="margin:0 auto">Answer six questions and see your estimated DSCR, LTV, and an
+        illustrative rate. Nothing is submitted anywhere. The math runs in your browser.</p>
+      </div>
+
+      <div class="panel" id="wizPanel">
+        <div class="wiz-bar"><i id="bar"></i></div>
+        <div class="wiz-meta"><span id="stepLbl">Step 1 of 6</span><span id="stepName">Your goal</span></div>
+
+        <!-- 1 -->
+        <div class="stepq on" data-s="1">
+          <h2>What are you trying to do?</h2>
+          <p class="qsub">This sets the leverage cap and the pricing tier.</p>
+          <div class="opts">
+            <button class="opt" data-k="goal" data-v="Purchase"><span class="oi">01</span><span>Buy a rental property<small>Acquisition, up to 80% LTV</small></span></button>
+            <button class="opt" data-k="goal" data-v="Rate &amp; term refinance"><span class="oi">02</span><span>Refinance an existing loan<small>Rate and term, up to 75% LTV</small></span></button>
+            <button class="opt" data-k="goal" data-v="Cash-out refinance"><span class="oi">03</span><span>Pull cash out of a property I own<small>Cash-out, 70-75% LTV</small></span></button>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="stepq" data-s="2">
+          <h2>What kind of property?</h2>
+          <p class="qsub">Property type affects both the maximum LTV and the rate.</p>
+          <div class="opts two">
+            <button class="opt" data-k="ptype" data-v="Single-family rental"><span class="oi">&#9679;</span><span>Single-family<small>Detached or attached</small></span></button>
+            <button class="opt" data-k="ptype" data-v="2-4 unit"><span class="oi">&#9679;</span><span>2-4 unit<small>Duplex, triplex, fourplex</small></span></button>
+            <button class="opt" data-k="ptype" data-v="Condo / townhome"><span class="oi">&#9679;</span><span>Condo / townhome<small>Warrantable</small></span></button>
+            <button class="opt" data-k="ptype" data-v="Short-term rental"><span class="oi">&#9679;</span><span>Short-term rental<small>Airbnb / VRBO / mid-term</small></span></button>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="stepq" data-s="3">
+          <h2>The numbers</h2>
+          <p class="qsub">Estimates are fine. You can change them on the results screen.</p>
+          <div class="numgrid">
+            <div class="field">
+              <label for="w_price">Purchase price or current value</label>
+              <input type="number" id="w_price" value="320000" min="0" step="5000">
+            </div>
+            <div class="field">
+              <label for="w_rent">Gross monthly rent</label>
+              <input type="number" id="w_rent" value="2400" min="0" step="50">
+              <div class="hint" id="rentHint">Actual lease, or expected market rent if vacant</div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="w_down" id="downLbl">Down payment</label>
+            <select id="w_down">
+              <option value="20">20% down (80% LTV)</option>
+              <option value="25" selected>25% down (75% LTV)</option>
+              <option value="30">30% down (70% LTV)</option>
+              <option value="35">35% down (65% LTV)</option>
+              <option value="40">40% down (60% LTV)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="w_hoa">Monthly HOA dues <span style="text-transform:none;letter-spacing:0;font-weight:400;color:var(--dim)">(optional)</span></label>
+            <input type="number" id="w_hoa" value="0" min="0" step="10">
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="stepq" data-s="4">
+          <h2>Roughly where is your credit?</h2>
+          <p class="qsub">An estimate is fine. Nothing here pulls your credit.</p>
+          <div class="opts two">
+            <button class="opt" data-k="fico" data-v="760+" data-n="770"><span class="oi">A+</span><span>760 or higher<small>Best pricing tier</small></span></button>
+            <button class="opt" data-k="fico" data-v="740-759" data-n="748"><span class="oi">A</span><span>740-759<small>Strong</small></span></button>
+            <button class="opt" data-k="fico" data-v="720-739" data-n="728"><span class="oi">B+</span><span>720-739<small>Good</small></span></button>
+            <button class="opt" data-k="fico" data-v="700-719" data-n="708"><span class="oi">B</span><span>700-719<small>Solid</small></span></button>
+            <button class="opt" data-k="fico" data-v="680-699" data-n="688"><span class="oi">C+</span><span>680-699<small>Workable</small></span></button>
+            <button class="opt" data-k="fico" data-v="660-679" data-n="668"><span class="oi">C</span><span>660-679<small>Qualifies</small></span></button>
+            <button class="opt" data-k="fico" data-v="630-659" data-n="644"><span class="oi">D</span><span>630-659<small>Program floor</small></span></button>
+            <button class="opt" data-k="fico" data-v="Below 630 / unsure" data-n="610"><span class="oi">?</span><span>Below 630 or not sure<small>Let's talk through options</small></span></button>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="stepq" data-s="5">
+          <h2>How soon do you need to close?</h2>
+          <p class="qsub">Timeline changes what we prioritize on the file.</p>
+          <div class="opts">
+            <button class="opt" data-k="time" data-v="ASAP - under contract or bridge maturing"><span class="oi">&#9889;</span><span>As fast as possible<small>Under contract, or a bridge loan is maturing</small></span></button>
+            <button class="opt" data-k="time" data-v="30-60 days"><span class="oi">&#128197;</span><span>Next 30-60 days<small>Actively working on it</small></span></button>
+            <button class="opt" data-k="time" data-v="60-90 days"><span class="oi">&#128197;</span><span>60-90 days<small>Planning ahead</small></span></button>
+            <button class="opt" data-k="time" data-v="Just researching"><span class="oi">&#128269;</span><span>Just researching<small>Learning how the numbers work</small></span></button>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="stepq" data-s="6">
+          <h2>How will you take title?</h2>
+          <p class="qsub">Last question. Then you get your numbers.</p>
+          <div class="opts">
+            <button class="opt" data-k="vest" data-v="LLC or entity"><span class="oi">&#127970;</span><span>In an LLC or other entity<small>Standard for DSCR, personal guarantee applies</small></span></button>
+            <button class="opt" data-k="vest" data-v="Personal name"><span class="oi">&#128100;</span><span>In my personal name<small>Also permitted</small></span></button>
+            <button class="opt" data-k="vest" data-v="Not sure yet"><span class="oi">?</span><span>Haven't decided<small>We can walk through the trade-offs</small></span></button>
+          </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="stepq" data-s="7">
+          <div class="result-hero">
+            <div class="pill-big" id="rPill">-</div>
+            <div style="font-size:.75rem;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);font-weight:650">Estimated DSCR</div>
+            <div class="val mono" id="rDscr" style="font-family:'Sora',sans-serif;font-size:4.2rem;font-weight:800;letter-spacing:-.04em;line-height:1.05;margin:6px 0 6px">-</div>
+            <div id="rVerdict" style="font-size:1.02rem;font-weight:600">&nbsp;</div>
+          </div>
+
+          <details class="acc adjbox" id="adjBox" style="margin-bottom:6px">
+            <summary>Adjust the numbers</summary>
+            <div class="body" style="padding-top:6px">
+              <div class="numgrid">
+                <div class="field"><label for="r_price">Price / value</label>
+                  <input type="number" id="r_price" min="0" step="5000"></div>
+                <div class="field"><label for="r_rent">Gross monthly rent</label>
+                  <input type="number" id="r_rent" min="0" step="50"></div>
+                <div class="field"><label for="r_down">Down payment / equity</label>
+                  <select id="r_down">
+                    <option value="20">20% (80% LTV)</option>
+                    <option value="25">25% (75% LTV)</option>
+                    <option value="30">30% (70% LTV)</option>
+                    <option value="35">35% (65% LTV)</option>
+                    <option value="40">40% (60% LTV)</option>
+                  </select></div>
+                <div class="field"><label for="r_hoa">Monthly HOA</label>
+                  <input type="number" id="r_hoa" min="0" step="10"></div>
+              </div>
+            </div>
+          </details>
+
+          <div class="res-grid">
+            <div class="res-tile"><div class="t">Loan amount</div><div class="v mono" id="rLoan">-</div></div>
+            <div class="res-tile"><div class="t">LTV</div><div class="v mono" id="rLtv">-</div></div>
+            <div class="res-tile"><div class="t">Illustrative rate</div><div class="v mono" id="rRate">-</div></div>
+          </div>
+
+          <div class="rows">
+            <div class="row"><span>Estimated monthly PITIA</span><b class="mono" id="rPitia">-</b></div>
+            <div class="row"><span>Estimated monthly cash flow</span><b class="mono" id="rCf">-</b></div>
+            <div class="row"><span>Estimated cash to close (down payment)</span><b class="mono" id="rDown">-</b></div>
+            <div class="row"><span>Reserves required (est.)</span><b class="mono" id="rRes">-</b></div>
+          </div>
+
+          <div style="margin-top:28px;padding-top:22px;border-top:1px solid var(--line)">
+            <h3 style="font-size:1.08rem;margin-bottom:14px" id="leverTitle">What could move this</h3>
+            <div id="levers"></div>
+          </div>
+
+          <div style="margin-top:28px;padding:22px;border-radius:14px;background:linear-gradient(155deg,rgba(23,227,155,.1),rgba(91,147,255,.07));border:1px solid var(--line2)">
+            <h3 style="font-size:1.12rem;margin-bottom:8px">Get a real answer on this scenario</h3>
+            <p style="font-size:.94rem;margin-bottom:18px">The number above is an estimate from public program
+            parameters. A five-minute call turns it into an actual structure, with a written term sheet, no
+            application fee, and no credit pull until you say go.</p>
+            <div class="btn-row">
+              <a class="btn btn-primary" href="tel:+18885550123"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M18 14.1v2.5a1.7 1.7 0 01-1.8 1.7 16.6 16.6 0 01-7.2-2.6 16.3 16.3 0 01-5-5A16.6 16.6 0 011.4 3.5 1.7 1.7 0 013.1 1.7h2.5a1.7 1.7 0 011.7 1.5c.1.8.3 1.6.6 2.4a1.7 1.7 0 01-.4 1.8L6.4 8.5a13.3 13.3 0 005 5l1.1-1.1a1.7 1.7 0 011.8-.4c.8.3 1.6.5 2.4.6a1.7 1.7 0 011.4 1.5z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Call (888) 555-0123</a>
+              <a class="btn btn-ghost" id="mailBtn" href="#"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><rect x="1.7" y="3.7" width="16.7" height="12.5" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M2.2 5l7.8 5.4L17.8 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Email me this scenario</a>
+            </div>
+            <p style="font-size:.79rem;color:var(--dim);margin:16px 0 0">The email button opens your own mail app
+            with the scenario details filled in. Nothing is sent or stored until you press send.</p>
+          </div>
+
+          <div class="assump" id="rAssump"></div>
+
+          <div class="wiz-nav">
+            <button class="btn btn-ghost btn-sm" id="btnEdit">&larr; Change my answers</button>
+            <button class="btn btn-ghost btn-sm" id="btnRestart">Start over</button>
+          </div>
+        </div>
+
+        <div class="wiz-nav" id="navRow">
+          <button class="btn btn-ghost btn-sm" id="btnBack">&larr; Back</button>
+          <button class="btn btn-primary btn-sm" id="btnNext">Continue &rarr;</button>
+        </div>
+      </div>
+
+      <p class="disc center" style="max-width:70ch;margin:26px auto 0">Rates shown are illustrative examples as of July 2026 for discussion purposes only. They are not an offer, quote, rate lock, or commitment to lend. Your actual rate depends on credit, LTV, DSCR, property type, occupancy, loan amount, state, and market conditions at the time of lock. This tool is an
+      educational estimator, not an application, a pre-approval, or an underwriting decision.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band sec-tight">
+  <div class="wrap center">
+    <h2 style="max-width:20ch;margin:0 auto .4em">Tell us the address and the rent. We'll tell you the number.</h2>
+    <p class="lead" style="margin-bottom:0">No application fee, no credit pull, no obligation. A real conversation with a
+    licensed loan officer. Usually five minutes is all it takes to know whether the deal pencils.</p>
+    <div class="contact-line">
+      <a href="tel:+18885550123"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M18 14.1v2.5a1.7 1.7 0 01-1.8 1.7 16.6 16.6 0 01-7.2-2.6 16.3 16.3 0 01-5-5A16.6 16.6 0 011.4 3.5 1.7 1.7 0 013.1 1.7h2.5a1.7 1.7 0 011.7 1.5c.1.8.3 1.6.6 2.4a1.7 1.7 0 01-.4 1.8L6.4 8.5a13.3 13.3 0 005 5l1.1-1.1a1.7 1.7 0 011.8-.4c.8.3 1.6.5 2.4.6a1.7 1.7 0 011.4 1.5z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>(888) 555-0123</a>
+      <a href="mailto:loans@paritylending.com"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><rect x="1.7" y="3.7" width="16.7" height="12.5" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M2.2 5l7.8 5.4L17.8 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>loans@paritylending.com</a>
+    </div>
+    <div class="btn-row" style="margin-top:28px">
+      <a class="btn btn-primary btn-lg" href="qualify.html">Run my scenario &rarr;</a>
+      <a class="btn btn-outline-w btn-lg" href="programs.html">See loan programs</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <a class="logo" href="index.html" style="margin-bottom:18px"><img src="data:image/png;base64,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" alt="Parity Lending"></a>
+        <p style="max-width:34ch;font-size:.9rem">DSCR Lending for Real Estate Investors. Rental-income qualified financing for
+        1-4 unit residential investment property.</p>
+        <div class="ehl"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 10.5L12 4l9 6.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 12v7.5h13V12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.5 19.5v-4h5v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg> Equal Housing Lender</div>
+      </div>
+      <div><h4>Site</h4><ul><li><a href="index.html">Home</a></li><li><a href="programs.html">Programs</a></li><li><a href="qualify.html">Check My Numbers</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Programs</h4><ul>
+        <li><a href="programs.html#purchase">Purchase</a></li>
+        <li><a href="programs.html#rateterm">Rate and term refinance</a></li>
+        <li><a href="programs.html#cashout">Cash-out refinance</a></li>
+        <li><a href="programs.html#str">Short-term rental</a></li>
+        <li><a href="programs.html#portfolio">Portfolio / blanket</a></li>
+        <li><a href="programs.html#foreign">Foreign national</a></li>
+      </ul></div>
+      <div><h4>Talk to us</h4><ul>
+        <li><a href="tel:+18885550123">(888) 555-0123</a></li>
+        <li><a href="mailto:loans@paritylending.com">loans@paritylending.com</a></li>
+        <li style="color:rgba(255,255,255,.5)">Mon-Fri, 8a-7p ET</li>
+      </ul></div>
+    </div>
+    <div class="legal">
+      <p>Equal Housing Lender. Ameritrust Mortgage Corporation NMLS 217229. This is not a commitment to lend. Programs, rates, terms, and conditions are subject to change without notice. All loans subject to credit approval. Ameritrust Mortgage Corporation is licensed to originate residential mortgage loans in the states where it holds
+      the required authority; not all products are available in all states. Loan approval is subject to underwriting
+      review of the property, the borrower, and supporting documentation.</p>
+      <p>Rates shown are illustrative examples as of July 2026 for discussion purposes only. They are not an offer, quote, rate lock, or commitment to lend. Your actual rate depends on credit, LTV, DSCR, property type, occupancy, loan amount, state, and market conditions at the time of lock.</p>
+      <p>Calculators and eligibility indicators on this site are educational estimates. They do not price a loan,
+      do not constitute underwriting, and do not guarantee eligibility or terms. Nothing on this site is legal,
+      tax, accounting, or investment advice. Consult your own professionals before acquiring or financing
+      investment property.</p>
+      <p style="margin-top:18px">&copy; 2026 Parity Lending. All rights reserved. |
+      NMLS Consumer Access: <a href="https://www.nmlsconsumeraccess.org">nmlsconsumeraccess.org</a></p>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){
+  var b=document.getElementById('burger'), n=document.getElementById('nav');
+  if(b) b.addEventListener('click',function(){n.classList.toggle('open')});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
+      e.target.classList.add('in');
+      e.target.querySelectorAll('[data-w]').forEach(function(el){el.style.width=el.getAttribute('data-w')});
+      io.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -40px'});
+  document.querySelectorAll('.rv').forEach(function(el,i){el.style.transitionDelay=(Math.min(i%4,3)*70)+'ms';io.observe(el)});
+})();
+
+(function(){
+  var S={goal:'',ptype:'',fico:'',ficoN:0,time:'',vest:''};
+  var cur=1, TOT=6;
+  var NAMES={1:'Your goal',2:'Property type',3:'The numbers',4:'Credit',5:'Timeline',6:'Vesting',7:'Your results'};
+  var $=function(id){return document.getElementById(id)};
+  var qq=function(s){return document.querySelectorAll(s)};
+  var money=function(n){return '$'+Math.round(n).toLocaleString('en-US')};
+
+  function show(n){
+    cur=n;
+    qq('.stepq').forEach(function(el){el.classList.toggle('on', +el.dataset.s===n)});
+    $('bar').style.width=(Math.min(n,TOT)/TOT*100)+'%';
+    $('stepLbl').textContent = n>TOT ? 'Complete' : 'Step '+n+' of '+TOT;
+    $('stepName').textContent=NAMES[n];
+    $('navRow').style.display = n>TOT ? 'none' : 'flex';
+    $('btnBack').style.visibility = n===1 ? 'hidden' : 'visible';
+    $('btnNext').textContent = n===TOT ? 'See my numbers →' : 'Continue →';
+    $('btnNext').style.display = (n===3) ? 'inline-flex' : (needsPick(n)&&!picked(n) ? 'inline-flex' : 'inline-flex');
+    window.scrollTo({top:$('wizPanel').offsetTop-90,behavior:'smooth'});
+    if(n>TOT){ pull(); render(); }
+  }
+  function needsPick(n){return n!==3}
+  function picked(n){
+    if(n===1)return !!S.goal; if(n===2)return !!S.ptype; if(n===4)return !!S.fico;
+    if(n===5)return !!S.time; if(n===6)return !!S.vest; return true;
+  }
+
+  qq('.opt').forEach(function(b){
+    b.addEventListener('click',function(){
+      var k=b.dataset.k;
+      b.parentNode.querySelectorAll('.opt').forEach(function(o){o.classList.remove('sel')});
+      b.classList.add('sel');
+      S[k]=b.dataset.v.replace(/&amp;/g,'&');
+      if(k==='fico') S.ficoN=+b.dataset.n;
+      if(k==='goal'){
+        var isP = S.goal==='Purchase';
+        $('downLbl').textContent = isP ? 'Down payment' : 'Equity position / target LTV';
+      }
+      if(k==='ptype'){
+        $('rentHint').textContent = S.ptype==='Short-term rental'
+          ? 'Average gross monthly revenue, we apply a 20% expense factor'
+          : 'Actual lease, or expected market rent if vacant';
+      }
+      setTimeout(function(){ show(Math.min(cur+1, TOT+1)); }, 220);
+    });
+  });
+
+  $('btnNext').addEventListener('click',function(){
+    if(needsPick(cur)&&!picked(cur)){
+      var box=document.querySelector('.stepq.on .opts');
+      if(box){box.style.animation='none';box.offsetHeight;box.style.animation='fade .35s ease'}
+      return;
+    }
+    show(Math.min(cur+1,TOT+1));
+  });
+  $('btnBack').addEventListener('click',function(){show(Math.max(cur-1,1))});
+  $('btnEdit').addEventListener('click',function(){show(1)});
+  $('btnRestart').addEventListener('click',function(){
+    S={goal:'',ptype:'',fico:'',ficoN:0,time:'',vest:''};
+    qq('.opt').forEach(function(o){o.classList.remove('sel')});
+    show(1);
+  });
+
+  function ficoAdj(f){
+    if(f>=760)return -0.125; if(f>=740)return 0; if(f>=720)return 0.125; if(f>=700)return 0.25;
+    if(f>=680)return 0.45; if(f>=660)return 0.70; if(f>=630)return 1.00; return 1.40;
+  }
+  function dscrAdj(d){
+    if(d>=1.5)return 0; if(d>=1.25)return 0.10; if(d>=1.0)return 0.30; if(d>=0.80)return 0.60; return 1.00;
+  }
+  function baseByLtv(l){ return l<=65?6.05 : l<=70?6.125 : l<=75?6.25 : 6.49; }
+  function pmt(P,a,y){var i=a/100/12,n=y*12; return i===0?P/n:P*i/(1-Math.pow(1+i,-n));}
+
+  function render(){
+    var V=+$('w_price').value||0, R0=+$('w_rent').value||0, d=+$('w_down').value, hoa=+$('w_hoa').value||0;
+    var isSTR = S.ptype==='Short-term rental';
+    var R = isSTR ? R0*0.80 : R0;
+    var ltv=100-d, L=V*ltv/100;
+    var tax=V*0.011/12, ins=V*0.0055/12;
+
+    var r=baseByLtv(ltv)+ficoAdj(S.ficoN||700)+0.30, pitia=0, dscr=0;
+    for(var k=0;k<5;k++){
+      pitia=pmt(L,r,30)+tax+ins+hoa;
+      dscr= pitia>0 ? R/pitia : 0;
+      r=baseByLtv(ltv)+ficoAdj(S.ficoN||700)+dscrAdj(dscr)
+        + (isSTR?0.35:0) + (S.goal==='Cash-out refinance'?0.25:0);
+    }
+    var cf=R0-pitia;
+    var resMonths = L>1500000 ? 6 : 2;
+
+    $('rDscr').textContent=dscr.toFixed(2);
+    $('rLoan').textContent=money(L);
+    $('rLtv').textContent=ltv+'%';
+    $('rRate').textContent=r.toFixed(3)+'%';
+    $('rPitia').textContent=money(pitia)+'/mo';
+    var cfEl=$('rCf'); cfEl.textContent=(cf<0?'-':'')+money(Math.abs(cf))+'/mo';
+    cfEl.className='mono '+(cf>=0?'ok':'bad');
+    $('rDown').textContent=money(V-L);
+    $('rRes').textContent=money(pitia*resMonths)+' ('+resMonths+' mo)';
+
+    // verdict
+    var pill=$('rPill'), vd=$('rVerdict'), dEl=$('rDscr');
+    var lowFico = (S.ficoN&&S.ficoN<630);
+    var cls,txt,pl,pbg;
+    if(lowFico){cls='bad';txt='Credit is the constraint here, not the property. Worth a call, there are paths.';pl='Needs a conversation';}
+    else if(dscr>=1.25){cls='ok';txt='Strong. This lands in the best pricing tier available.';pl='Looks strong';}
+    else if(dscr>=1.0){cls='ok';txt='Qualifies. This clears the standard 1.00 threshold.';pl='Likely qualifies';}
+    else if(dscr>=0.80){cls='warn';txt='Close. Workable at reduced LTV with 660+ credit, or restructure to lift the ratio.';pl='Workable with adjustments';}
+    else {cls='bad';txt='Below program thresholds as structured. More equity or a no-ratio program is the usual fix.';pl='Needs restructuring';}
+    dEl.className='val mono '+cls; vd.className=cls; vd.textContent=txt;
+    pill.textContent=pl; pill.className='pill-big';
+    var col = cls==='ok'?['rgba(23,227,155,.14)','#17E39B']:cls==='warn'?['rgba(245,193,91,.14)','#1A3796']:['rgba(255,107,138,.14)','#FF6B8A'];
+    pill.style.background=col[0]; pill.style.color=col[1]; pill.style.border='1px solid '+col[0].replace('.14','.35');
+
+    // levers
+    var lv=[];
+    if(dscr<1.25){
+      var need=1.0, needP=R/need;
+      var pi=pmt(L,r,30);
+      var targetPI=needP-tax-ins-hoa;
+      if(dscr<1.0 && targetPI>0){
+        var lo=0,hi=L,mid;
+        for(var j=0;j<40;j++){mid=(lo+hi)/2; if(pmt(mid,r,30)>targetPI) hi=mid; else lo=mid;}
+        var newLtv=Math.max(0,Math.floor(mid/V*100));
+        lv.push(['1','Put more down','Roughly '+newLtv+'% LTV ('+money(V-mid)+' down) brings the ratio to about 1.00 at this rate.']);
+      }
+      var ioPitia=L*(r/100/12)+tax+ins+hoa;
+      var ioD= ioPitia>0? R/ioPitia : 0;
+      lv.push(['2','Interest-only structure','An I/O period drops the payment to about '+money(ioPitia)+'/mo, lifting DSCR to roughly '+ioD.toFixed(2)+'.']);
+    }
+    if(isSTR) lv.push(['3','Compare the long-term number','Short-term revenue takes a 20% expense haircut and a rate premium. Sometimes a 12-month lease qualifies better even at lower gross rent.']);
+    if(S.ficoN&&S.ficoN<720) lv.push(['4','Credit tier','Moving up one FICO bracket is typically worth 0.10-0.25% on rate, which feeds straight back into the ratio.']);
+    if(S.goal==='Cash-out refinance') lv.push(['5','Rate and term instead','If you don\'t need the cash, a straight rate-and-term refinance prices roughly 0.25% better and allows higher LTV.']);
+    if(dscr>=1.25) lv.push(['1','Consider more leverage','With this much coverage you may be able to take a higher LTV and keep the ratio above 1.00, leaving more capital for the next deal.']);
+    if(L<150000) lv.push(['x','Loan size is under the program floor','This program starts at $150,000 and your loan comes to '
+      +money(L)+'. A smaller down payment, a higher-priced property, or a different product would be the fix. Worth a call either way.']);
+    if(L>2000000) lv.push(['x','Above the standard ceiling','The standard band tops out at $2,000,000 and your loan comes to '
+      +money(L)+'. Larger files are reviewed case by case, usually with more reserves and a tighter LTV.']);
+    lv.push([String(lv.length+1),'Shorter prepay','If you plan to sell or refinance within two years, ask for a reduced prepayment period. It costs rate but can save far more at exit.']);
+
+    $('levers').innerHTML=lv.map(function(x,i){
+      return '<div class="lever"><div class="b">'+(i+1)+'</div><div><b>'+x[1]+'</b><p>'+x[2]+'</p></div></div>';
+    }).join('');
+
+    $('rAssump').textContent='Assumes a 30-year fixed amortization, property taxes at 1.1% and insurance at 0.55% '
+      +'of value per year, HOA as entered'+(isSTR?', and a 20% expense factor applied to short-term rental revenue':'')
+      +'. Illustrative rate built from published program parameters as of July 2026; it is not a quote, '
+      +'a lock, or a commitment to lend.';
+
+    // mailto
+    var body=
+      'Hi, I ran a scenario on your site and would like a real quote.\n\n'+
+      'GOAL: '+(S.goal||'n/a')+'\n'+
+      'PROPERTY TYPE: '+(S.ptype||'n/a')+'\n'+
+      'PRICE / VALUE: '+money(V)+'\n'+
+      'GROSS MONTHLY RENT: '+money(R0)+(isSTR?' (short-term gross)':'')+'\n'+
+      'DOWN PAYMENT / EQUITY: '+d+'%  (LTV '+ltv+'%)\n'+
+      'MONTHLY HOA: '+money(hoa)+'\n'+
+      'CREDIT BAND: '+(S.fico||'n/a')+'\n'+
+      'TIMELINE: '+(S.time||'n/a')+'\n'+
+      'VESTING: '+(S.vest||'n/a')+'\n\n'+
+      '--- ESTIMATE FROM YOUR CALCULATOR ---\n'+
+      'Loan amount: '+money(L)+'\n'+
+      'Estimated DSCR: '+dscr.toFixed(2)+'\n'+
+      'Illustrative rate: '+r.toFixed(3)+'%\n'+
+      'Estimated PITIA: '+money(pitia)+'/mo\n'+
+      'Estimated cash flow: '+(cf<0?'-':'')+money(Math.abs(cf))+'/mo\n\n'+
+      'Property address: \nBest time to reach me: \nMy name: \nMy phone: \n';
+    $('mailBtn').href='mailto:loans@paritylending.com?subject='+encodeURIComponent('DSCR scenario: '+(S.goal||'inquiry')+', '+money(V))
+      +'&body='+encodeURIComponent(body);
+  }
+
+  // two-way sync between the step-3 inputs and the results-screen adjuster
+  var PAIRS=[['w_price','r_price'],['w_rent','r_rent'],['w_down','r_down'],['w_hoa','r_hoa']];
+  function pull(){ PAIRS.forEach(function(p){ $(p[1]).value=$(p[0]).value }); }
+  PAIRS.forEach(function(p){
+    $(p[1]).addEventListener('input',function(){ $(p[0]).value=$(p[1]).value; render(); });
+    $(p[1]).addEventListener('change',function(){ $(p[0]).value=$(p[1]).value; render(); });
+  });
+  show(1);
+})();
+</script>
+</body>
+</html>
