@@ -109,9 +109,9 @@ strong{color:var(--navy); font-weight:650}
   backdrop-filter:blur(16px) saturate(160%); border-bottom:1px solid var(--line)}
 .nav-in{max-width:var(--max); margin:0 auto; padding:0 24px; height:72px; display:flex; align-items:center; gap:26px}
 .logo{display:flex; align-items:center; text-decoration:none!important; flex:none}
-.logo img{height:34px; width:auto; display:block}
-@media(max-width:420px){.logo img{height:29px}}
-footer .logo img{height:36px}
+.logo img{height:27px; width:auto; display:block}
+@media(max-width:420px){.logo img{height:23px}}
+footer .logo img{height:30px}
 .nav-links{display:flex; gap:2px; margin-left:auto; align-items:center}
 .nav-links a{padding:9px 13px; border-radius:7px; color:var(--muted)!important; font-size:.92rem;
   font-weight:550; text-decoration:none!important; transition:.15s}

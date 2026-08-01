@@ -7,6 +7,11 @@ import base64, os
 
 SRC = "/root/.claude/uploads/7807b22d-0381-567a-a925-069eb9790111/42e0f448-1785344771805_image.png"
 CURSOR_BOX = (173, 0, 206, 20)   # x0,y0,x1,y1 in source pixels
+# Rob asked to drop the "HOME LOANS" tagline (2026-08-01) because the site is investor DSCR only.
+# In the trimmed artwork the wordmark ends at y=50 and the chevron at y=51; the tagline starts at
+# y=54, so cutting at y=52 removes it cleanly without clipping the mark.
+DROP_TAGLINE = True
+TAGLINE_CUT_Y = 52
 os.makedirs("assets", exist_ok=True)
 
 src = Image.open(SRC).convert("RGB")
@@ -29,6 +34,9 @@ for y in range(H):
                         int(max(0, min(255, (b - (255 - a)) / f))), a)
 
 out = out.crop(out.getbbox())
+if DROP_TAGLINE:
+    out = out.crop((0, 0, out.size[0], min(TAGLINE_CUT_Y, out.size[1])))
+    out = out.crop(out.getbbox())
 w, h = out.size
 p = out.load()
 
