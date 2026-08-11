@@ -429,7 +429,6 @@ footer p{color:rgba(255,255,255,.62)}
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
     <div class="nav-links"><a href="index.html" class="">Home</a><a href="programs.html" class="">Programs</a><a href="qualify.html" class="on">Check My Numbers</a><a href="faq.html" class="">FAQ</a><a href="contact.html" class="">Contact</a></div>
     <div class="nav-cta">
-      <a class="btn btn-ghost btn-sm" href="tel:+18885550123"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M18 14.1v2.5a1.7 1.7 0 01-1.8 1.7 16.6 16.6 0 01-7.2-2.6 16.3 16.3 0 01-5-5A16.6 16.6 0 011.4 3.5 1.7 1.7 0 013.1 1.7h2.5a1.7 1.7 0 011.7 1.5c.1.8.3 1.6.6 2.4a1.7 1.7 0 01-.4 1.8L6.4 8.5a13.3 13.3 0 005 5l1.1-1.1a1.7 1.7 0 011.8-.4c.8.3 1.6.5 2.4.6a1.7 1.7 0 011.4 1.5z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>(888) 555-0123</a>
       <a class="btn btn-primary btn-sm" href="qualify.html">Check my numbers</a>
     </div>
   </div>
@@ -498,8 +497,8 @@ footer p{color:rgba(255,255,255,.62)}
             </select>
           </div>
           <div class="field">
-            <label for="w_hoa">Monthly HOA dues <span style="text-transform:none;letter-spacing:0;font-weight:400;color:var(--dim)">(optional)</span></label>
-            <input type="number" id="w_hoa" value="0" min="0" step="10">
+            <label for="w_hoa" style="display:none">Monthly HOA dues <span style="text-transform:none;letter-spacing:0;font-weight:400;color:var(--dim)">(optional)</span></label>
+            <input type="number" id="w_hoa" value="0" min="0" step="10" style="display:none">
           </div>
         </div>
 
@@ -514,8 +513,8 @@ footer p{color:rgba(255,255,255,.62)}
             <button class="opt" data-k="fico" data-v="700-719" data-n="708"><span class="oi">B</span><span>700-719<small>Solid</small></span></button>
             <button class="opt" data-k="fico" data-v="680-699" data-n="688"><span class="oi">C+</span><span>680-699<small>Workable</small></span></button>
             <button class="opt" data-k="fico" data-v="660-679" data-n="668"><span class="oi">C</span><span>660-679<small>Qualifies</small></span></button>
-            <button class="opt" data-k="fico" data-v="630-659" data-n="644"><span class="oi">D</span><span>630-659<small>Program floor</small></span></button>
-            <button class="opt" data-k="fico" data-v="Below 630 / unsure" data-n="610"><span class="oi">?</span><span>Below 630 or not sure<small>Let's talk through options</small></span></button>
+            <button class="opt" data-k="fico" data-v="620-659" data-n="640"><span class="oi">D</span><span>620-659<small>Program floor</small></span></button>
+            <button class="opt" data-k="fico" data-v="Below 620 / unsure" data-n="600"><span class="oi">?</span><span>Below 620 or not sure<small>Let's talk through options</small></span></button>
           </div>
         </div>
 
@@ -567,7 +566,7 @@ footer p{color:rgba(255,255,255,.62)}
                     <option value="35">35% (65% LTV)</option>
                     <option value="40">40% (60% LTV)</option>
                   </select></div>
-                <div class="field"><label for="r_hoa">Monthly HOA</label>
+                <div class="field" style="display:none"><label for="r_hoa">Monthly HOA</label>
                   <input type="number" id="r_hoa" min="0" step="10"></div>
               </div>
             </div>
@@ -597,8 +596,7 @@ footer p{color:rgba(255,255,255,.62)}
             parameters. A five-minute call turns it into an actual structure, with a written term sheet, no
             application fee, and no credit pull until you say go.</p>
             <div class="btn-row">
-              <a class="btn btn-primary" href="tel:+18885550123"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M18 14.1v2.5a1.7 1.7 0 01-1.8 1.7 16.6 16.6 0 01-7.2-2.6 16.3 16.3 0 01-5-5A16.6 16.6 0 011.4 3.5 1.7 1.7 0 013.1 1.7h2.5a1.7 1.7 0 011.7 1.5c.1.8.3 1.6.6 2.4a1.7 1.7 0 01-.4 1.8L6.4 8.5a13.3 13.3 0 005 5l1.1-1.1a1.7 1.7 0 011.8-.4c.8.3 1.6.5 2.4.6a1.7 1.7 0 011.4 1.5z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Call (888) 555-0123</a>
-              <a class="btn btn-ghost" id="mailBtn" href="#"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><rect x="1.7" y="3.7" width="16.7" height="12.5" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M2.2 5l7.8 5.4L17.8 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Email me this scenario</a>
+              <a class="btn btn-primary" id="mailBtn" href="#"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><rect x="1.7" y="3.7" width="16.7" height="12.5" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M2.2 5l7.8 5.4L17.8 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Fill out an inquiry &rarr;</a>
             </div>
             <p style="font-size:.79rem;color:var(--dim);margin:16px 0 0">The email button opens your own mail app
             with the scenario details filled in. Nothing is sent or stored until you press send.</p>
@@ -630,7 +628,6 @@ footer p{color:rgba(255,255,255,.62)}
     <p class="lead" style="margin-bottom:0">No application fee, no credit pull, no obligation. A real conversation with a
     licensed loan officer. Usually five minutes is all it takes to know whether the deal pencils.</p>
     <div class="contact-line">
-      <a href="tel:+18885550123"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M18 14.1v2.5a1.7 1.7 0 01-1.8 1.7 16.6 16.6 0 01-7.2-2.6 16.3 16.3 0 01-5-5A16.6 16.6 0 011.4 3.5 1.7 1.7 0 013.1 1.7h2.5a1.7 1.7 0 011.7 1.5c.1.8.3 1.6.6 2.4a1.7 1.7 0 01-.4 1.8L6.4 8.5a13.3 13.3 0 005 5l1.1-1.1a1.7 1.7 0 011.8-.4c.8.3 1.6.5 2.4.6a1.7 1.7 0 011.4 1.5z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>(888) 555-0123</a>
       <a href="mailto:loans@paritylending.com"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><rect x="1.7" y="3.7" width="16.7" height="12.5" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M2.2 5l7.8 5.4L17.8 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>loans@paritylending.com</a>
     </div>
     <div class="btn-row" style="margin-top:28px">
@@ -655,26 +652,22 @@ footer p{color:rgba(255,255,255,.62)}
         <li><a href="programs.html#rateterm">Rate and term refinance</a></li>
         <li><a href="programs.html#cashout">Cash-out refinance</a></li>
         <li><a href="programs.html#str">Short-term rental</a></li>
-        <li><a href="programs.html#portfolio">Portfolio / blanket</a></li>
         <li><a href="programs.html#foreign">Foreign national</a></li>
       </ul></div>
       <div><h4>Talk to us</h4><ul>
-        <li><a href="tel:+18885550123">(888) 555-0123</a></li>
+        <li style="color:rgba(255,255,255,.5)">17341 Irvine Blvd, Suite 150<br>Tustin, CA 92780</li>
         <li><a href="mailto:loans@paritylending.com">loans@paritylending.com</a></li>
         <li style="color:rgba(255,255,255,.5)">Mon-Fri, 8a-7p ET</li>
       </ul></div>
     </div>
     <div class="legal">
-      <p>Equal Housing Lender. Ameritrust Mortgage Corporation NMLS 217229. This is not a commitment to lend. Programs, rates, terms, and conditions are subject to change without notice. All loans subject to credit approval. Ameritrust Mortgage Corporation is licensed to originate residential mortgage loans in the states where it holds
-      the required authority; not all products are available in all states. Loan approval is subject to underwriting
-      review of the property, the borrower, and supporting documentation.</p>
+      <p>RSS Financial Holdings LLC, doing business as Parity Lending. This is not a commitment to lend. Programs, rates, and terms are subject to change without notice. All loans are subject to credit approval and property appraisal. Business-purpose loans for non-owner-occupied investment property only.</p>
       <p>Rates shown are illustrative examples as of July 2026 for discussion purposes only. They are not an offer, quote, rate lock, or commitment to lend. Your actual rate depends on credit, LTV, DSCR, property type, occupancy, loan amount, state, and market conditions at the time of lock.</p>
       <p>Calculators and eligibility indicators on this site are educational estimates. They do not price a loan,
       do not constitute underwriting, and do not guarantee eligibility or terms. Nothing on this site is legal,
       tax, accounting, or investment advice. Consult your own professionals before acquiring or financing
       investment property.</p>
-      <p style="margin-top:18px">&copy; 2026 Parity Lending. All rights reserved. |
-      NMLS Consumer Access: <a href="https://www.nmlsconsumeraccess.org">nmlsconsumeraccess.org</a></p>
+      <p style="margin-top:18px">&copy; 2026 Parity Lending. All rights reserved. |</p>
     </div>
   </div>
 </footer>
@@ -754,7 +747,7 @@ footer p{color:rgba(255,255,255,.62)}
 
   function ficoAdj(f){
     if(f>=760)return -0.125; if(f>=740)return 0; if(f>=720)return 0.125; if(f>=700)return 0.25;
-    if(f>=680)return 0.45; if(f>=660)return 0.70; if(f>=630)return 1.00; return 1.40;
+    if(f>=680)return 0.45; if(f>=660)return 0.70; if(f>=620)return 1.00; return 1.40;
   }
   function dscrAdj(d){
     if(d>=1.5)return 0; if(d>=1.25)return 0.10; if(d>=1.0)return 0.30; if(d>=0.80)return 0.60; return 1.00;
@@ -791,7 +784,7 @@ footer p{color:rgba(255,255,255,.62)}
 
     // verdict
     var pill=$('rPill'), vd=$('rVerdict'), dEl=$('rDscr');
-    var lowFico = (S.ficoN&&S.ficoN<630);
+    var lowFico = (S.ficoN&&S.ficoN<620);
     var cls,txt,pl,pbg;
     if(lowFico){cls='bad';txt='Credit is the constraint here, not the property. Worth a call, there are paths.';pl='Needs a conversation';}
     else if(dscr>=1.25){cls='ok';txt='Strong. This lands in the best pricing tier available.';pl='Looks strong';}
@@ -823,9 +816,9 @@ footer p{color:rgba(255,255,255,.62)}
     if(S.ficoN&&S.ficoN<720) lv.push(['4','Credit tier','Moving up one FICO bracket is typically worth 0.10-0.25% on rate, which feeds straight back into the ratio.']);
     if(S.goal==='Cash-out refinance') lv.push(['5','Rate and term instead','If you don\'t need the cash, a straight rate-and-term refinance prices roughly 0.25% better and allows higher LTV.']);
     if(dscr>=1.25) lv.push(['1','Consider more leverage','With this much coverage you may be able to take a higher LTV and keep the ratio above 1.00, leaving more capital for the next deal.']);
-    if(L<150000) lv.push(['x','Loan size is under the program floor','This program starts at $150,000 and your loan comes to '
+    if(L<100000) lv.push(['x','Loan size is under the program floor','This program starts at $100,000 and your loan comes to '
       +money(L)+'. A smaller down payment, a higher-priced property, or a different product would be the fix. Worth a call either way.']);
-    if(L>2000000) lv.push(['x','Above the standard ceiling','The standard band tops out at $2,000,000 and your loan comes to '
+    if(L>3000000) lv.push(['x','Above the standard ceiling','The standard band tops out at $3,000,000 and your loan comes to '
       +money(L)+'. Larger files are reviewed case by case, usually with more reserves and a tighter LTV.']);
     lv.push([String(lv.length+1),'Shorter prepay','If you plan to sell or refinance within two years, ask for a reduced prepayment period. It costs rate but can save far more at exit.']);
 
@@ -857,7 +850,7 @@ footer p{color:rgba(255,255,255,.62)}
       'Estimated PITIA: '+money(pitia)+'/mo\n'+
       'Estimated cash flow: '+(cf<0?'-':'')+money(Math.abs(cf))+'/mo\n\n'+
       'Property address: \nBest time to reach me: \nMy name: \nMy phone: \n';
-    $('mailBtn').href='mailto:loans@paritylending.com?subject='+encodeURIComponent('DSCR scenario: '+(S.goal||'inquiry')+', '+money(V))
+    $('mailBtn').href='mailto:loans@paritylending.com?subject='+encodeURIComponent('DSCR inquiry: '+(S.goal||'inquiry')+', '+money(V))
       +'&body='+encodeURIComponent(body);
   }
 
