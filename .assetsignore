@@ -1,0 +1,5 @@
+.wrangler
+.assetsignore
+*.map
+src
+.git
