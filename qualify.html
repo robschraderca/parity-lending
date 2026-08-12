@@ -598,8 +598,8 @@ footer p{color:rgba(255,255,255,.62)}
             <div class="btn-row">
               <a class="btn btn-primary" id="mailBtn" href="#"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><rect x="1.7" y="3.7" width="16.7" height="12.5" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M2.2 5l7.8 5.4L17.8 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Fill out an inquiry &rarr;</a>
             </div>
-            <p style="font-size:.79rem;color:var(--dim);margin:16px 0 0">The email button opens your own mail app
-            with the scenario details filled in. Nothing is sent or stored until you press send.</p>
+            <p style="font-size:.79rem;color:var(--dim);margin:16px 0 0">Takes about twenty seconds: your name,
+            email, phone, and the property address. The scenario numbers above come along automatically.</p>
           </div>
 
           <div class="assump" id="rAssump"></div>
@@ -628,7 +628,8 @@ footer p{color:rgba(255,255,255,.62)}
     <p class="lead" style="margin-bottom:0">No application fee, no credit pull, no obligation. A real conversation with a
     licensed loan officer. Usually five minutes is all it takes to know whether the deal pencils.</p>
     <div class="contact-line">
-      <a href="mailto:loans@paritylending.com"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><rect x="1.7" y="3.7" width="16.7" height="12.5" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M2.2 5l7.8 5.4L17.8 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>loans@paritylending.com</a>
+      <a href="mailto:info@paritylending.com"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><rect x="1.7" y="3.7" width="16.7" height="12.5" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M2.2 5l7.8 5.4L17.8 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>info@paritylending.com</a>
+      <a href="tel:+18884350314"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 4h3.5l1.5 4-2 1.5a12 12 0 0 0 6.5 6.5L16 14l4 1.5V19a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>(888) 435-0314</a>
     </div>
     <div class="btn-row" style="margin-top:28px">
       <a class="btn btn-primary btn-lg" href="qualify.html">Run my scenario &rarr;</a>
@@ -656,7 +657,8 @@ footer p{color:rgba(255,255,255,.62)}
       </ul></div>
       <div><h4>Talk to us</h4><ul>
         <li style="color:rgba(255,255,255,.5)">30 N Gould St, Ste N<br>Sheridan, WY 82801</li>
-        <li><a href="mailto:loans@paritylending.com">loans@paritylending.com</a></li>
+        <li><a href="tel:+18884350314">(888) 435-0314</a></li>
+        <li><a href="mailto:info@paritylending.com">info@paritylending.com</a></li>
         <li style="color:rgba(255,255,255,.5)">Mon-Fri, 8a-7p ET</li>
       </ul></div>
     </div>
@@ -850,8 +852,14 @@ footer p{color:rgba(255,255,255,.62)}
       'Estimated PITIA: '+money(pitia)+'/mo\n'+
       'Estimated cash flow: '+(cf<0?'-':'')+money(Math.abs(cf))+'/mo\n\n'+
       'Property address: \nBest time to reach me: \nMy name: \nMy phone: \n';
-    $('mailBtn').href='mailto:loans@paritylending.com?subject='+encodeURIComponent('DSCR inquiry: '+(S.goal||'inquiry')+', '+money(V))
+    $('mailBtn').href='mailto:info@paritylending.com?subject='+encodeURIComponent('DSCR inquiry: '+(S.goal||'inquiry')+', '+money(V))
       +'&body='+encodeURIComponent(body);
+
+    // snapshot for the inquiry form
+    window.__scen={goal:S.goal||'',ptype:S.ptype||'',fico:S.fico||'',ficoN:S.ficoN||0,
+      time:S.time||'',vest:S.vest||'',price:V,rent:R0,downPct:d,ltv:ltv,hoa:hoa,
+      loan:Math.round(L),dscr:+dscr.toFixed(2),rate:+r.toFixed(3),pitia:Math.round(pitia),
+      cashFlow:Math.round(cf),downPayment:Math.round(V-L),resMonths:resMonths,isSTR:isSTR};
   }
 
   // two-way sync between the step-3 inputs and the results-screen adjuster
@@ -862,7 +870,92 @@ footer p{color:rgba(255,255,255,.62)}
     $(p[1]).addEventListener('change',function(){ $(p[0]).value=$(p[1]).value; render(); });
   });
   show(1);
+
+  // ===== Inquiry modal =====
+  var INQ_URL='https://parity-inquiry.robschraderca.workers.dev/';
+  document.addEventListener('DOMContentLoaded',function(){
+  var ov=$('inqOverlay');
+  function inqOpen(){
+    ov.hidden=false; document.body.style.overflow='hidden';
+    $('inqFormView').hidden=false; $('inqDoneView').hidden=true; $('inqErr').hidden=true;
+    setTimeout(function(){ $('inq_name').focus(); }, 60);
+  }
+  function inqClose(){ ov.hidden=true; document.body.style.overflow=''; }
+  $('mailBtn').addEventListener('click',function(e){ e.preventDefault(); inqOpen(); });
+  $('inqClose').addEventListener('click',inqClose);
+  ov.addEventListener('click',function(e){ if(e.target===ov) inqClose(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!ov.hidden) inqClose(); });
+
+  $('inqForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=$('inq_name').value.trim(), email=$('inq_email').value.trim(),
+        phone=$('inq_phone').value.trim(), addr=$('inq_addr').value.trim();
+    var err=$('inqErr');
+    if(!name||!email||!phone||!addr){ err.textContent='Please fill in all four fields.'; err.hidden=false; return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ err.textContent='That email address doesn’t look right.'; err.hidden=false; return; }
+    if(phone.replace(/\D/g,'').length<10){ err.textContent='Please enter a 10-digit phone number.'; err.hidden=false; return; }
+    err.hidden=true;
+    var btn=$('inqSubmit'); btn.disabled=true; btn.textContent='Sending…';
+    fetch(INQ_URL,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name:name,email:email,phone:phone,address:addr,
+        scenario:window.__scen||null,page:location.href})})
+    .then(function(r){ if(!r.ok) throw new Error('http '+r.status); return r.json(); })
+    .then(function(){ $('inqFormView').hidden=true; $('inqDoneView').hidden=false; })
+    .catch(function(){
+      btn.disabled=false; btn.textContent='Send my scenario →';
+      err.innerHTML='Something went wrong sending this. You can try again, or '
+        +'<a href="'+$('mailBtn').href+'">email us your scenario instead</a>.';
+      err.hidden=false;
+    });
+  });
+  });
 })();
 </script>
+
+<style>
+.inq-overlay{position:fixed;inset:0;z-index:200;background:rgba(14,27,61,.55);backdrop-filter:blur(3px);
+  display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto}
+.inq-overlay[hidden]{display:none}
+.inq-modal{position:relative;background:#fff;border-radius:16px;max-width:460px;width:100%;
+  padding:32px 30px 26px;box-shadow:0 24px 60px -12px rgba(14,27,61,.35);animation:fade .25s ease}
+.inq-x{position:absolute;top:14px;right:16px;background:none;border:none;font-size:1.6rem;line-height:1;
+  color:var(--dim);cursor:pointer;padding:4px}
+.inq-x:hover{color:var(--navy)}
+.inq-err{background:rgba(255,107,138,.1);border:1px solid rgba(255,107,138,.35);color:#B4304A;
+  border-radius:8px;padding:10px 14px;font-size:.85rem;margin-bottom:16px}
+.inq-err a{color:#B4304A;text-decoration:underline}
+</style>
+<div class="inq-overlay" id="inqOverlay" hidden>
+  <div class="inq-modal" role="dialog" aria-modal="true" aria-labelledby="inqTitle">
+    <button class="inq-x" id="inqClose" aria-label="Close">&times;</button>
+    <div id="inqFormView">
+      <h3 id="inqTitle" style="font-size:1.3rem;margin-bottom:6px">Where should we send the real answer?</h3>
+      <p style="font-size:.92rem;color:var(--dim);margin-bottom:20px">Your scenario numbers come along automatically.</p>
+      <form id="inqForm" novalidate>
+        <div class="field"><label for="inq_name">Full name</label>
+          <input type="text" id="inq_name" autocomplete="name"></div>
+        <div class="field"><label for="inq_email">Email</label>
+          <input type="email" id="inq_email" autocomplete="email"></div>
+        <div class="field"><label for="inq_phone">Phone</label>
+          <input type="tel" id="inq_phone" autocomplete="tel"></div>
+        <div class="field"><label for="inq_addr">Property address</label>
+          <input type="text" id="inq_addr" autocomplete="street-address" placeholder="Street, city, state, ZIP"></div>
+        <div class="inq-err" id="inqErr" hidden></div>
+        <button type="submit" class="btn btn-primary" id="inqSubmit" style="width:100%;justify-content:center">Send my scenario &rarr;</button>
+        <p style="font-size:.74rem;color:var(--dim);margin:14px 0 0;line-height:1.5">By submitting, you agree Parity
+        Lending may contact you by phone, text, or email about your inquiry. Business-purpose loans for non-owner-occupied
+        investment property only. This is not a loan application and does not affect your credit.</p>
+      </form>
+    </div>
+    <div id="inqDoneView" hidden style="text-align:center;padding:18px 0">
+      <div style="width:54px;height:54px;margin:0 auto 14px;border-radius:50%;background:rgba(23,227,155,.15);display:flex;align-items:center;justify-content:center">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4.5 12.5l5 5 10-11" stroke="#0FA871" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3 style="font-size:1.25rem;margin-bottom:8px">Got it. We have your scenario.</h3>
+      <p style="font-size:.94rem;color:var(--dim);margin-bottom:0">We just emailed you a confirmation, and a licensed
+      loan officer will get back to you shortly.</p>
+    </div>
+  </div>
+</div>
 </body>
 </html>
