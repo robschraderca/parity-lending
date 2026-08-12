@@ -1,0 +1,10 @@
+name = "parity-inquiry"
+main = "worker.js"
+compatibility_date = "2026-08-12"
+
+[vars]
+LOCATION_ID = "gj3TVshQw98rU6eDaLwp"
+ALERT_EMAILS = "robschraderca@gmail.com,michael@tunited.net"
+REPLY_TO = "info@paritylending.com"
+
+# secret: GHL_TOKEN  (wrangler secret put GHL_TOKEN)
