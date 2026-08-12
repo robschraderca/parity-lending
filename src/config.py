@@ -9,7 +9,7 @@ TAGLINE     = "DSCR Lending for Real Estate Investors"
 
 PHONE_DISPLAY = "(888) 555-0123"      # <-- replace with the real number
 PHONE_TEL     = "+18885550123"
-EMAIL         = "loans@paritylending.com"     # <-- replace with the real inbox
+EMAIL         = "info@paritylending.com"     # <-- replace with the real inbox
 
 CITY_STATE   = "Nationwide (excluding ND, SD, VT)"
 LO_NAME      = "Michael McDermott"
