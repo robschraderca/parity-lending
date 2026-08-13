@@ -61,6 +61,14 @@ async function getFieldIds(env) {
 
 const money = (n) => '$' + Math.round(+n || 0).toLocaleString('en-US');
 
+// Where did this lead come from? /dscr = the Meta-ads landing page.
+function srcInfo(p) {
+  const landing = /\/dscr([/?#]|$)/.test(p.page || '');
+  return landing
+    ? { label: 'DSCR landing page', tag: 'dscr-landing-page', source: 'DSCR landing page' }
+    : { label: 'Check My Numbers calculator', tag: 'check-my-numbers', source: 'Check My Numbers calculator' };
+}
+
 function mapPropertyType(pt) {
   // GHL dropdown: Condo, Townhouse, Single-Family, 2 Units, 3 Units, 4 Units
   if (pt === 'Single-family rental') return 'Single-Family';
@@ -90,7 +98,7 @@ function buildCustomFields(fieldIds, p, s) {
 
 function scenarioNote(p, s) {
   const L = [];
-  L.push('WEBSITE INQUIRY — Check My Numbers calculator');
+  L.push('WEBSITE INQUIRY — ' + srcInfo(p).label);
   L.push(`Submitted: ${new Date().toISOString()}`);
   L.push('');
   L.push(`Name: ${p.name}`);
@@ -136,7 +144,7 @@ function leadEmailHtml(p, s) {
   }
   return `<div style="font-family:Arial,Helvetica,sans-serif;color:#0E1B3D;font-size:15px;line-height:1.6;max-width:560px">
   <p>Hi ${p.name.split(' ')[0]},</p>
-  <p>We received your inquiry from the Check My Numbers calculator at paritylending.com — thank you.
+  <p>We received your inquiry at paritylending.com — thank you.
   A licensed loan officer will review your scenario and get back to you shortly.</p>
   ${table}
   <p>If anything above changes, or you want to add detail (like the property address or a purchase contract),
@@ -152,7 +160,7 @@ function leadEmailHtml(p, s) {
 function alertEmailHtml(p, s, contactId, locationId) {
   const link = `https://app.gohighlevel.com/v2/location/${locationId}/contacts/detail/${contactId}`;
   return `<div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#0E1B3D">
-  <h2 style="font-size:16px">New DSCR inquiry — Check My Numbers</h2>
+  <h2 style="font-size:16px">New DSCR inquiry — ${srcInfo(p).label}</h2>
   <pre style="background:#F2F3F6;padding:14px;border-radius:8px;font-size:13px;white-space:pre-wrap">${
     scenarioNote(p, s).replace(/</g, '&lt;')}</pre>
   <p><a href="${link}">Open contact in HighLevel</a></p>
@@ -213,7 +221,7 @@ export default {
       const fieldIds = await getFieldIds(env);
       const cf = buildCustomFields(fieldIds, p, s);
       const contactId = await upsertContact(env, cf, p,
-        ['website-inquiry', 'check-my-numbers'], 'Check My Numbers calculator');
+        ['website-inquiry', srcInfo(p).tag], srcInfo(p).source);
       result.contactId = contactId;
 
       // 2) scenario note
