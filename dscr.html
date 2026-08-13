@@ -21,144 +21,108 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:#fff;color:var(--body);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16.5px;line-height:1.65;letter-spacing:-.004em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{margin:0;background:var(--off);color:var(--body);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16.5px;line-height:1.65;letter-spacing:-.004em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img,svg{max-width:100%}
 h1,h2,h3{font-family:'Sora',sans-serif;color:var(--navy);letter-spacing:-.02em;margin:0}
 
 /* NAV */
 .nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
-.nav-in{max-width:var(--max);margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:14px}
-.nav-in img{height:26px;display:block}
-.nav-phone{display:inline-flex;align-items:center;gap:8px;color:var(--navy);text-decoration:none;font-weight:700;font-size:.95rem;white-space:nowrap}
+.nav-in{max-width:var(--max);margin:0 auto;padding:13px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.nav-in img{height:25px;display:block}
+.nav-phone{display:inline-flex;align-items:center;gap:8px;color:var(--navy);text-decoration:none;font-weight:700;font-size:.94rem;white-space:nowrap}
 .nav-phone:hover{color:var(--red)}
-@media(max-width:600px){.nav-in img{height:22px}.nav-phone{font-size:.88rem;background:var(--red);color:#fff;padding:9px 14px;border-radius:8px}.nav-phone:hover{color:#fff;background:var(--red-d)}.nav-phone .np-lbl{display:none}}
+@media(max-width:600px){.nav-in{padding:10px 14px}.nav-in img{height:21px}.nav-phone{font-size:.85rem;background:var(--red);color:#fff;padding:8px 13px;border-radius:8px}.nav-phone:hover{color:#fff;background:var(--red-d)}}
 
-/* HERO */
-.hero{background:linear-gradient(160deg,var(--navy-d) 0%,var(--navy-bg) 55%,#1B2A5E 100%);position:relative;overflow:hidden;padding:60px 24px 72px}
-.hero:before{content:'';position:absolute;top:-40%;right:-12%;width:640px;height:640px;background:radial-gradient(circle,rgba(212,52,38,.18) 0%,transparent 68%);border-radius:50%}
-.hero:after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:64px 64px;pointer-events:none}
-.hero-in{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1.06fr .94fr;gap:52px;align-items:start;position:relative;z-index:1}
-.eyebrow{display:inline-flex;align-items:center;gap:9px;background:rgba(212,52,38,.16);border:1px solid rgba(212,52,38,.4);color:#FFB4AC;padding:7px 15px;border-radius:50px;font-size:.72rem;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;margin-bottom:20px}
-.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px rgba(212,52,38,.25)}
-.hero h1{color:#fff;font-size:clamp(1.9rem,4vw,2.85rem);font-weight:800;line-height:1.12;margin-bottom:18px}
-.hero h1 em{font-style:normal;color:#E8564A}
-.hero-sub{color:rgba(255,255,255,.82);font-size:1.06rem;max-width:480px;margin:0 0 22px}
-.bullets{list-style:none;margin:0 0 30px;padding:0}
-.bullets li{color:#fff;font-weight:600;font-size:1rem;padding:6px 0;display:flex;align-items:center;gap:12px}
-.bullets .ck{flex:none;width:22px;height:22px;border-radius:50%;background:rgba(212,52,38,.22);display:inline-flex;align-items:center;justify-content:center}
-.steps4{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;backdrop-filter:blur(4px)}
-.s4{text-align:center;position:relative;padding:4px 6px}
-.s4+.s4:before{content:'';position:absolute;left:-3px;top:16px;bottom:16px;width:1px;background:rgba(255,255,255,.12)}
-.s4 b{display:flex;width:34px;height:34px;margin:0 auto 8px;border-radius:50%;background:var(--red);color:#fff;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:.95rem}
-.s4 .t{color:#fff;font-weight:600;font-size:.85rem;line-height:1.3}
-.s4 .d{color:rgba(255,255,255,.55);font-size:.72rem;line-height:1.35;margin-top:3px}
+/* INTRO + WIZARD SECTION (form-first) */
+.wizsec{padding:34px 18px 64px;background:
+  radial-gradient(900px 420px at 85% -10%, rgba(212,52,38,.06), transparent 60%),
+  radial-gradient(800px 400px at 0% 0%, rgba(26,55,150,.06), transparent 55%), var(--off)}
+.wizwrap{max-width:760px;margin:0 auto}
+.intro{text-align:center;margin-bottom:22px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line2);color:var(--red);padding:7px 16px;border-radius:50px;font-size:.7rem;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;margin-bottom:14px;box-shadow:var(--sh)}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px rgba(212,52,38,.15)}
+.intro h1{font-size:clamp(1.55rem,4.6vw,2.4rem);font-weight:800;line-height:1.15;margin-bottom:8px}
+.intro h1 em{font-style:normal;color:var(--red)}
+.intro p{margin:0 auto;max-width:56ch;font-size:.98rem;color:var(--muted)}
+@media(max-width:600px){.intro{margin-bottom:16px}.intro p{font-size:.9rem}}
 
-/* WIZARD CARD */
-.wcard{background:#fff;border-radius:16px;box-shadow:var(--sh-l);padding:30px 28px 26px;position:relative}
-.wcard h3{font-size:1.28rem;font-weight:700;margin-bottom:4px}
-.wsub{font-size:.88rem;color:var(--muted);margin:0 0 18px}
-.wprog{display:flex;gap:6px;margin-bottom:8px}
-.wdot{flex:1;height:4px;border-radius:2px;background:var(--lgray);transition:background .3s}
-.wdot.on{background:var(--red)}
-.wdot.done{background:var(--navy)}
-.wlbl{font-size:.7rem;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--dim);margin-bottom:16px}
-.wlbl span{color:var(--navy)}
-.wpanel{display:none}
-.wpanel.on{display:block;animation:fadeIn .25s ease-out}
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.wq{font-family:'Sora',sans-serif;font-size:1.08rem;font-weight:700;color:var(--navy);margin-bottom:16px;line-height:1.3}
-.wopts{display:grid;gap:10px}
-.wopt{display:block;cursor:pointer;padding:14px 16px;border:1.5px solid var(--line2);border-radius:11px;font-size:.96rem;font-weight:600;color:var(--navy);background:#fff;transition:all .15s;text-align:center;user-select:none}
-.wopt:hover{border-color:var(--navy)}
-.wopt input{position:absolute;opacity:0;pointer-events:none}
-.wopt.sel{border-color:var(--red);background:rgba(212,52,38,.05);color:var(--red);box-shadow:0 0 0 1px var(--red) inset}
-.field{margin-bottom:13px}
-.field label{display:block;font-size:.7rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--navy);margin-bottom:6px}
-.field input,.field select{width:100%;padding:12px 14px;border:1.5px solid var(--line2);border-radius:9px;font-size:1rem;font-family:'Inter',sans-serif;color:var(--navy);background:#fff;min-height:47px;appearance:none;-webkit-appearance:none}
+/* PANEL / WIZARD (Check My Numbers layout) */
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;box-shadow:var(--sh-l)}
+@media(max-width:600px){.panel{padding:20px 16px;border-radius:14px}}
+.wiz-bar{height:4px;background:var(--lgray);border-radius:100px;overflow:hidden;margin-bottom:12px}
+.wiz-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--navy),var(--red));transition:width .35s cubic-bezier(.4,0,.2,1)}
+.wiz-meta{display:flex;justify-content:space-between;font-size:.8rem;color:var(--dim);margin-bottom:22px;letter-spacing:.03em}
+.stepq{display:none;animation:fade .35s ease}
+.stepq.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.stepq h2{font-size:clamp(1.3rem,3vw,1.75rem);margin-bottom:.3em}
+.stepq .qsub{color:var(--muted);margin:0 0 22px;font-size:.96rem}
+.opts{display:grid;gap:10px;margin-bottom:8px}
+.opts.two{grid-template-columns:1fr 1fr}
+@media(max-width:560px){.opts.two{grid-template-columns:1fr}}
+.opt{display:flex;align-items:center;gap:14px;padding:15px 17px;border:1px solid var(--line2);border-radius:10px;background:#fff;cursor:pointer;transition:.15s;font-weight:550;text-align:left;color:var(--navy);font-family:'Inter',sans-serif;font-size:.96rem;width:100%}
+.opt:hover{border-color:var(--red);background:rgba(212,52,38,.035);transform:translateX(3px)}
+.opt.sel{border-color:var(--red);background:rgba(212,52,38,.06);box-shadow:0 0 0 3px rgba(212,52,38,.1)}
+.opt .oi{width:30px;height:30px;border-radius:7px;background:var(--off);display:grid;place-items:center;flex:none;font-size:.82rem;color:var(--red);font-weight:700;border:1px solid var(--line)}
+.opt small{display:block;color:var(--dim);font-weight:400;font-size:.83rem;margin-top:2px}
+.numgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:560px){.numgrid{grid-template-columns:1fr;gap:0}}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:.71rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--navy);margin-bottom:6px}
+.field input,.field select{width:100%;padding:12px 14px;border:1px solid var(--line2);border-radius:9px;font-size:1rem;font-family:'Inter',sans-serif;color:var(--navy);background:#fff;min-height:47px;appearance:none;-webkit-appearance:none}
 .field select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%23101A35' stroke-width='1.7' fill='none' stroke-linecap='round'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
 .field input:focus,.field select:focus{outline:none;border-color:var(--navy)}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-.whint{font-size:.78rem;color:var(--dim);margin-top:8px}
-.wnav{display:flex;gap:10px;margin-top:18px}
-.wback,.wnext{padding:14px;border-radius:9px;font-family:'Inter',sans-serif;font-size:.97rem;font-weight:700;cursor:pointer;min-height:51px;transition:all .15s}
-.wback{flex:1;background:#fff;color:var(--navy);border:1.5px solid var(--line2)}
-.wback:hover{border-color:var(--navy)}
-.wnext{flex:2;background:var(--red);color:#fff;border:1.5px solid var(--red);box-shadow:0 6px 18px -6px rgba(212,52,38,.5)}
-.wnext:hover{background:var(--red-d);border-color:var(--red-d)}
-.wnext:disabled{background:var(--dim);border-color:var(--dim);cursor:not-allowed;box-shadow:none}
-.wtrust{font-size:.74rem;color:var(--dim);text-align:center;margin-top:12px}
-.werr{display:none;background:#FDF0EF;border:1px solid #F3C2BC;color:var(--red-d);font-size:.85rem;border-radius:9px;padding:10px 13px;margin-top:12px}
+.field .hint{font-size:.78rem;color:var(--dim);margin-top:6px}
+.wiz-nav{display:flex;justify-content:space-between;gap:12px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 24px;border-radius:9px;font-weight:650;font-size:.95rem;border:1px solid transparent;cursor:pointer;transition:.18s ease;text-decoration:none!important;font-family:'Inter',sans-serif;white-space:nowrap}
+.btn-primary{background:var(--red);color:#fff!important;box-shadow:0 6px 18px -6px rgba(212,52,38,.5)}
+.btn-primary:hover{background:var(--red-d);transform:translateY(-2px)}
+.btn-primary:disabled{background:var(--dim);cursor:not-allowed;box-shadow:none;transform:none}
+.btn-ghost{background:#fff;color:var(--navy)!important;border-color:var(--line2)}
+.btn-ghost:hover{border-color:var(--navy)}
+.werr{display:none;background:#FDF0EF;border:1px solid #F3C2BC;color:var(--red-d);font-size:.87rem;border-radius:9px;padding:10px 13px;margin:12px 0 0}
 .werr.show{display:block}
-.wfoot{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
-.wfoot img{height:20px}
-.wfoot span{font-size:.74rem;color:var(--dim)}
+.wtrust{font-size:.76rem;color:var(--dim);text-align:center;margin-top:14px}
+.underpanel{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:18px;font-size:.78rem;color:var(--dim)}
+.underpanel span{display:inline-flex;align-items:center;gap:6px}
 /* success */
-.wdone{text-align:center;padding:26px 6px 10px}
+.wdone{text-align:center;padding:26px 6px 14px}
 .wdone .big{width:70px;height:70px;border-radius:50%;background:var(--navy);display:inline-flex;align-items:center;justify-content:center;margin-bottom:20px}
-.wdone h3{font-size:1.3rem;margin-bottom:10px}
-.wdone p{font-size:.94rem;color:var(--body);margin:0 0 14px}
-.wdone .call{font-size:.85rem;color:var(--dim)}
+.wdone h2{font-size:1.4rem;margin-bottom:10px}
+.wdone p{font-size:.95rem;color:var(--body);margin:0 0 14px}
+.wdone .call{font-size:.86rem;color:var(--dim)}
 .wdone .call a{color:var(--red);font-weight:700;text-decoration:none}
 
-/* SECTIONS */
-section{padding:74px 24px}
+/* BELOW-FOLD SECTIONS */
+section{padding:70px 22px}
 .wrap{max-width:var(--max);margin:0 auto}
 .slabel{font-size:.72rem;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;color:var(--red);margin-bottom:12px}
-.stitle{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;line-height:1.2;margin-bottom:12px}
-.ssub{font-size:1.05rem;color:var(--muted);max-width:640px}
-
-/* NAVY BAND */
-.band{background:linear-gradient(160deg,var(--navy-d),var(--navy-bg));color:#fff;text-align:center;padding:84px 24px}
+.stitle{font-size:clamp(1.5rem,3vw,2.05rem);font-weight:800;line-height:1.2;margin-bottom:12px}
+.ssub{font-size:1.03rem;color:var(--muted);max-width:640px}
+.band{background:linear-gradient(160deg,var(--navy-d),var(--navy-bg));color:#fff;text-align:center;padding:80px 22px}
 .band .slabel{color:rgba(255,255,255,.6)}
-.band h2{color:#fff;font-size:clamp(1.5rem,3.4vw,2.2rem);font-weight:800;line-height:1.2;max-width:760px;margin:0 auto 18px}
+.band h2{color:#fff;font-size:clamp(1.5rem,3.4vw,2.15rem);font-weight:800;line-height:1.2;max-width:760px;margin:0 auto 18px}
 .band h2 em{font-style:normal;color:#E8564A}
-.band p{color:rgba(255,255,255,.82);font-size:1.06rem;max-width:660px;margin:0 auto 26px}
-.bandpill{display:inline-flex;gap:0;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:14px 26px;margin-bottom:30px;font-family:'Sora',sans-serif;font-weight:600;font-size:.9rem;letter-spacing:.5px;color:#fff;flex-wrap:wrap;justify-content:center}
+.band p{color:rgba(255,255,255,.82);font-size:1.04rem;max-width:640px;margin:0 auto 26px}
+.bandpill{display:inline-flex;gap:0;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:14px 26px;margin-bottom:30px;font-family:'Sora',sans-serif;font-weight:600;font-size:.88rem;letter-spacing:.5px;color:#fff;flex-wrap:wrap;justify-content:center}
 .bandpill span{padding:0 16px;white-space:nowrap}
 .bandpill span+span{border-left:1px solid rgba(255,255,255,.18)}
 @media(max-width:620px){.bandpill{gap:8px;padding:14px 12px}.bandpill span+span{border-left:none}}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 28px;border-radius:9px;font-weight:650;font-size:.97rem;border:1px solid transparent;cursor:pointer;transition:.18s ease;text-decoration:none!important;font-family:'Inter',sans-serif;white-space:nowrap}
-.btn-primary{background:var(--red);color:#fff!important;box-shadow:0 6px 18px -6px rgba(212,52,38,.5)}
-.btn-primary:hover{background:var(--red-d);transform:translateY(-2px)}
-
-/* BENEFITS */
-.bg2{background:var(--off)}
-.bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:38px}
-.bcard{background:#fff;border:1px solid var(--line);border-left:4px solid var(--red);border-radius:var(--r);padding:26px 24px;transition:all .25s}
+.bg2{background:#fff}
+.bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
+.bcard{background:var(--off);border:1px solid var(--line);border-left:4px solid var(--red);border-radius:var(--r);padding:25px 23px;transition:all .25s}
 .bcard:hover{transform:translateY(-3px);box-shadow:var(--sh)}
-.bcard h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
-.bcard p{font-size:.92rem;color:var(--muted);line-height:1.65;margin:0}
-
-/* CONTACT CARD + FOOTER */
-.ccard{background:#fff;border:1px solid var(--line);border-top:3px solid var(--red);border-radius:var(--r);box-shadow:var(--sh);max-width:640px;margin:0 auto;padding:30px 32px;display:flex;gap:26px;align-items:center;flex-wrap:wrap;justify-content:center;text-align:center}
-.ccard img{height:30px}
-.ccard .ci{text-align:center}
-.ccard .ci .n{font-family:'Sora',sans-serif;font-weight:700;color:var(--navy);font-size:1.02rem;margin-bottom:2px}
-.ccard .ci .t{font-size:.82rem;color:var(--red);font-weight:700;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:10px}
-.ccard .ci a{display:block;color:var(--navy);text-decoration:none;font-size:.94rem;font-weight:600;margin:2px 0}
-.ccard .ci a:hover{color:var(--red)}
-.ccard .ci .addr{font-size:.8rem;color:var(--dim);margin-top:8px;line-height:1.5}
-.legal{font-size:.72rem;line-height:1.7;color:var(--dim);max-width:740px;margin:34px auto 0;text-align:center;padding-top:22px;border-top:1px solid var(--line)}
-
-@media(max-width:960px){
-  .hero-in{grid-template-columns:1fr;gap:34px}
-  .hero{padding:44px 20px 56px}
-  .steps4{grid-template-columns:repeat(4,1fr)}
-  .bgrid{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:620px){
-  section{padding:52px 18px}
-  .hero{padding:34px 16px 46px}
-  .hero-sub{font-size:.97rem}
-  .bullets li{font-size:.92rem}
-  .steps4{grid-template-columns:1fr 1fr;gap:14px}
-  .s4+.s4:before{display:none}
-  .wcard{padding:24px 18px 20px}
-  .frow{grid-template-columns:1fr}
-  .bgrid{grid-template-columns:1fr;gap:14px}
-  .band{padding:60px 18px}
-  .ccard{padding:26px 20px}
-}
+.bcard h3{font-size:1.03rem;font-weight:700;margin-bottom:8px}
+.bcard p{font-size:.91rem;color:var(--muted);line-height:1.65;margin:0}
+.ccard{background:#fff;border:1px solid var(--line);border-top:3px solid var(--red);border-radius:var(--r);box-shadow:var(--sh);max-width:620px;margin:0 auto;padding:30px 32px;text-align:center}
+.ccard img{height:29px;margin-bottom:12px}
+.ccard .t{font-size:.8rem;color:var(--red);font-weight:700;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:10px}
+.ccard a{display:block;color:var(--navy);text-decoration:none;font-size:.95rem;font-weight:600;margin:2px 0}
+.ccard a:hover{color:var(--red)}
+.ccard .addr{font-size:.8rem;color:var(--dim);margin-top:8px;line-height:1.5}
+.legal{font-size:.72rem;line-height:1.7;color:var(--dim);max-width:740px;margin:32px auto 0;text-align:center;padding-top:22px;border-top:1px solid var(--line)}
+@media(max-width:960px){.bgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){section{padding:50px 16px}.bgrid{grid-template-columns:1fr;gap:14px}.band{padding:58px 16px}.ccard{padding:26px 20px}}
 </style>
 </head>
 <body>
@@ -166,147 +130,160 @@ section{padding:74px 24px}
 <nav class="nav">
   <div class="nav-in">
     <img src="data:image/png;base64,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" alt="Parity Lending">
-    <a class="nav-phone" href="tel:8884350314"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M14.5 11.4v2a1.3 1.3 0 0 1-1.44 1.33 13.2 13.2 0 0 1-5.75-2.05 13 13 0 0 1-4-4A13.2 13.2 0 0 1 1.27 2.9 1.3 1.3 0 0 1 2.6 1.5h2a1.3 1.3 0 0 1 1.3 1.12c.08.62.24 1.23.45 1.82a1.3 1.3 0 0 1-.3 1.37l-.84.85a10.4 10.4 0 0 0 4 4l.84-.85a1.3 1.3 0 0 1 1.38-.29c.58.21 1.2.36 1.82.45a1.3 1.3 0 0 1 1.12 1.32Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="np-lbl">(888)&nbsp;435-0314</span><span style="display:none">(888) 435-0314</span></a>
+    <a class="nav-phone" href="tel:8884350314"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M14.5 11.4v2a1.3 1.3 0 0 1-1.44 1.33 13.2 13.2 0 0 1-5.75-2.05 13 13 0 0 1-4-4A13.2 13.2 0 0 1 1.27 2.9 1.3 1.3 0 0 1 2.6 1.5h2a1.3 1.3 0 0 1 1.3 1.12c.08.62.24 1.23.45 1.82a1.3 1.3 0 0 1-.3 1.37l-.84.85a10.4 10.4 0 0 0 4 4l.84-.85a1.3 1.3 0 0 1 1.38-.29c.58.21 1.2.36 1.82.45a1.3 1.3 0 0 1 1.12 1.32Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>(888)&nbsp;435-0314</a>
   </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-in">
-    <div>
-      <div class="eyebrow"><span class="dot"></span>DSCR Home Investor Loans</div>
+<div class="wizsec">
+  <div class="wizwrap">
+    <div class="intro">
+      <div class="eyebrow"><span class="dot"></span>DSCR Home Investor Loans &middot; No credit pull</div>
       <h1>Buy rental property <em>without tax returns or W-2s.</em></h1>
-      <p class="hero-sub">DSCR loans qualify on the property's rental income, not your personal income. If the rent covers the payment, you're in the conversation.</p>
-      <ul class="bullets">
-        <li><span class="ck"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.2 11.8 2.5 8.1" stroke="#E8564A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>No W-2s, pay stubs or tax returns</li>
-        <li><span class="ck"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.2 11.8 2.5 8.1" stroke="#E8564A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>20%+ down &middot; 620+ credit &middot; up to 80% LTV</li>
-        <li><span class="ck"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.2 11.8 2.5 8.1" stroke="#E8564A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>SFR, condos and 2-4 units &middot; close in an LLC</li>
-        <li><span class="ck"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.2 11.8 2.5 8.1" stroke="#E8564A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Purchase, refinance or cash out</li>
-      </ul>
-      <div class="steps4">
-        <div class="s4"><b>1</b><div class="t">Tell us the deal</div><div class="d">Rent, price, down payment</div></div>
-        <div class="s4"><b>2</b><div class="t">We run the numbers</div><div class="d">DSCR ratio, payment vs. rent</div></div>
-        <div class="s4"><b>3</b><div class="t">See if you qualify</div><div class="d">No income docs needed</div></div>
-        <div class="s4"><b>4</b><div class="t">Close &amp; cash flow</div><div class="d">Lock in the asset</div></div>
-      </div>
+      <p>Answer six quick questions. We'll run your full DSCR breakdown and send it to you.</p>
     </div>
 
-    <div class="wcard" id="wcard">
+    <div class="panel" id="wizPanel">
       <div id="wformview">
-        <h3>Check my numbers</h3>
-        <p class="wsub">Four quick steps. We'll run the full DSCR breakdown and send it to you &mdash; no credit pull.</p>
-        <div class="wprog">
-          <div class="wdot on" data-dot="1"></div>
-          <div class="wdot" data-dot="2"></div>
-          <div class="wdot" data-dot="3"></div>
-          <div class="wdot" data-dot="4"></div>
+        <div class="wiz-bar"><i id="bar" style="width:14%"></i></div>
+        <div class="wiz-meta"><span id="stepLbl">Step 1 of 7</span><span id="stepName">Your goal</span></div>
+
+        <!-- 1 -->
+        <div class="stepq on" data-s="1">
+          <h2>What are you trying to do?</h2>
+          <p class="qsub">This sets the leverage cap and the pricing tier.</p>
+          <div class="opts">
+            <button type="button" class="opt" data-k="goal" data-v="Purchase"><span class="oi">01</span><span>Buy a rental property<small>Acquisition, up to 80% LTV</small></span></button>
+            <button type="button" class="opt" data-k="goal" data-v="Rate &amp; term refinance"><span class="oi">02</span><span>Refinance an existing loan<small>Better structure on a property you own</small></span></button>
+            <button type="button" class="opt" data-k="goal" data-v="Cash-out refinance"><span class="oi">03</span><span>Pull cash out of a property I own<small>Put trapped equity to work</small></span></button>
+          </div>
         </div>
-        <div class="wlbl">Step <span id="wcur">1</span> of 4</div>
 
-        <form id="wiz" novalidate>
-          <div class="wpanel on" data-step="1">
-            <div class="wq">What are you looking to do?</div>
-            <div class="wopts" data-auto="2">
-              <label class="wopt"><input type="radio" name="goal" value="Purchase"><span>Buy an investment property</span></label>
-              <label class="wopt"><input type="radio" name="goal" value="Rate &amp; term refinance"><span>Refinance for better terms</span></label>
-              <label class="wopt"><input type="radio" name="goal" value="Cash-out refinance"><span>Cash-out refinance</span></label>
-            </div>
+        <!-- 2 -->
+        <div class="stepq" data-s="2">
+          <h2>What kind of property?</h2>
+          <p class="qsub">Property type affects both the maximum LTV and the pricing.</p>
+          <div class="opts two">
+            <button type="button" class="opt" data-k="ptype" data-v="Single-family rental"><span class="oi">&#9679;</span><span>Single-family<small>Detached or attached</small></span></button>
+            <button type="button" class="opt" data-k="ptype" data-v="2-4 unit"><span class="oi">&#9679;</span><span>2-4 unit<small>Duplex, triplex, fourplex</small></span></button>
+            <button type="button" class="opt" data-k="ptype" data-v="Condo / townhome"><span class="oi">&#9679;</span><span>Condo / townhome<small>Warrantable</small></span></button>
+            <button type="button" class="opt" data-k="ptype" data-v="Short-term rental"><span class="oi">&#9679;</span><span>Short-term rental<small>Airbnb / VRBO / mid-term</small></span></button>
           </div>
+        </div>
 
-          <div class="wpanel" data-step="2">
-            <div class="wq">What kind of property?</div>
-            <div class="wopts" data-auto="3">
-              <label class="wopt"><input type="radio" name="ptype" value="Single-family rental"><span>Single family</span></label>
-              <label class="wopt"><input type="radio" name="ptype" value="Condo / townhome"><span>Condo / townhome</span></label>
-              <label class="wopt"><input type="radio" name="ptype" value="2-4 unit"><span>2-4 units</span></label>
-            </div>
-            <div class="wnav"><button type="button" class="wback" data-go="1">&larr; Back</button></div>
-          </div>
-
-          <div class="wpanel" data-step="3">
-            <div class="wq">Tell us about the deal</div>
-            <div class="frow">
-              <div class="field">
-                <label for="w_rent">Monthly market rent</label>
-                <input type="number" id="w_rent" inputmode="numeric" placeholder="2,400" min="0" step="50">
-              </div>
-              <div class="field">
-                <label for="w_price">Price / value</label>
-                <input type="number" id="w_price" inputmode="numeric" placeholder="320,000" min="0" step="5000">
-              </div>
-            </div>
-            <div class="frow">
-              <div class="field">
-                <label for="w_down">Down payment / equity</label>
-                <select id="w_down">
-                  <option value="20">20% (80% LTV)</option>
-                  <option value="25" selected>25% (75% LTV)</option>
-                  <option value="30">30% (70% LTV)</option>
-                  <option value="35">35%+ (65% LTV)</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="w_fico">Credit score (est.)</label>
-                <select id="w_fico">
-                  <option value="" disabled selected>Select</option>
-                  <option value="740">740+</option>
-                  <option value="700">700 &ndash; 739</option>
-                  <option value="660">660 &ndash; 699</option>
-                  <option value="620">620 &ndash; 659</option>
-                  <option value="0">Not sure</option>
-                </select>
-              </div>
-            </div>
-            <div class="whint">Best guess is fine &mdash; we confirm the real numbers with you.</div>
-            <div class="wnav">
-              <button type="button" class="wback" data-go="2">&larr; Back</button>
-              <button type="button" class="wnext" data-go="4">Continue &rarr;</button>
-            </div>
-          </div>
-
-          <div class="wpanel" data-step="4">
-            <div class="wq">Where should we send your DSCR breakdown?</div>
+        <!-- 3 -->
+        <div class="stepq" data-s="3">
+          <h2>The numbers</h2>
+          <p class="qsub">Estimates are fine &mdash; we confirm the real numbers with you.</p>
+          <div class="numgrid">
             <div class="field">
-              <label for="w_name">Your name</label>
-              <input type="text" id="w_name" autocomplete="name" placeholder="First and last name">
-            </div>
-            <div class="frow">
-              <div class="field">
-                <label for="w_phone">Phone</label>
-                <input type="tel" id="w_phone" inputmode="tel" autocomplete="tel" placeholder="(555) 123-4567">
-              </div>
-              <div class="field">
-                <label for="w_email">Email</label>
-                <input type="email" id="w_email" inputmode="email" autocomplete="email" placeholder="you@email.com">
-              </div>
+              <label for="w_price">Purchase price or current value</label>
+              <input type="number" id="w_price" value="320000" min="0" step="5000">
             </div>
             <div class="field">
-              <label for="w_addr">Property address</label>
-              <input type="text" id="w_addr" placeholder="Address, or city &amp; state if you're still shopping">
+              <label for="w_rent">Gross monthly rent</label>
+              <input type="number" id="w_rent" value="2400" min="0" step="50">
+              <div class="hint">Actual lease, or expected market rent if vacant</div>
             </div>
-            <div class="werr" id="werr"></div>
-            <div class="wnav">
-              <button type="button" class="wback" data-go="3">&larr; Back</button>
-              <button type="submit" class="wnext" id="wsubmit">Get my DSCR breakdown &rarr;</button>
-            </div>
-            <div class="wtrust">No credit pull &nbsp;&bull;&nbsp; One lender &nbsp;&bull;&nbsp; Your info is never resold</div>
           </div>
-        </form>
+          <div class="field">
+            <label for="w_down" id="downLbl">Down payment / equity</label>
+            <select id="w_down">
+              <option value="20">20% (80% LTV)</option>
+              <option value="25" selected>25% (75% LTV)</option>
+              <option value="30">30% (70% LTV)</option>
+              <option value="35">35% (65% LTV)</option>
+              <option value="40">40% (60% LTV)</option>
+            </select>
+          </div>
+        </div>
 
-        <div class="wfoot">
-          <img src="data:image/png;base64,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" alt="Parity Lending">
-          <span>DSCR Lending Nationwide.</span>
+        <!-- 4 -->
+        <div class="stepq" data-s="4">
+          <h2>Roughly where is your credit?</h2>
+          <p class="qsub">An estimate is fine. Nothing here pulls your credit.</p>
+          <div class="opts two">
+            <button type="button" class="opt" data-k="fico" data-v="760+" data-n="770"><span class="oi">A+</span><span>760 or higher<small>Best pricing tier</small></span></button>
+            <button type="button" class="opt" data-k="fico" data-v="740-759" data-n="748"><span class="oi">A</span><span>740-759<small>Strong</small></span></button>
+            <button type="button" class="opt" data-k="fico" data-v="720-739" data-n="728"><span class="oi">B+</span><span>720-739<small>Good</small></span></button>
+            <button type="button" class="opt" data-k="fico" data-v="700-719" data-n="708"><span class="oi">B</span><span>700-719<small>Solid</small></span></button>
+            <button type="button" class="opt" data-k="fico" data-v="680-699" data-n="688"><span class="oi">C+</span><span>680-699<small>Workable</small></span></button>
+            <button type="button" class="opt" data-k="fico" data-v="660-679" data-n="668"><span class="oi">C</span><span>660-679<small>Qualifies</small></span></button>
+            <button type="button" class="opt" data-k="fico" data-v="620-659" data-n="640"><span class="oi">D</span><span>620-659<small>Program floor</small></span></button>
+            <button type="button" class="opt" data-k="fico" data-v="Below 620 / unsure" data-n="600"><span class="oi">?</span><span>Below 620 or not sure<small>Let's talk through options</small></span></button>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="stepq" data-s="5">
+          <h2>How soon do you need to close?</h2>
+          <p class="qsub">Timeline changes what we prioritize on the file.</p>
+          <div class="opts">
+            <button type="button" class="opt" data-k="time" data-v="ASAP - under contract or bridge maturing"><span class="oi">&#9889;</span><span>As fast as possible<small>Under contract, or a bridge loan is maturing</small></span></button>
+            <button type="button" class="opt" data-k="time" data-v="30-60 days"><span class="oi">&#128197;</span><span>Next 30-60 days<small>Actively working on it</small></span></button>
+            <button type="button" class="opt" data-k="time" data-v="60-90 days"><span class="oi">&#128197;</span><span>60-90 days<small>Planning ahead</small></span></button>
+            <button type="button" class="opt" data-k="time" data-v="Just researching"><span class="oi">&#128269;</span><span>Just researching<small>Learning how the numbers work</small></span></button>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="stepq" data-s="6">
+          <h2>How will you take title?</h2>
+          <p class="qsub">Last question. Then tell us where to send your numbers.</p>
+          <div class="opts">
+            <button type="button" class="opt" data-k="vest" data-v="LLC or entity"><span class="oi">&#127970;</span><span>In an LLC or other entity<small>Standard for DSCR, personal guarantee applies</small></span></button>
+            <button type="button" class="opt" data-k="vest" data-v="Personal name"><span class="oi">&#128100;</span><span>In my personal name<small>Also permitted</small></span></button>
+            <button type="button" class="opt" data-k="vest" data-v="Not sure yet"><span class="oi">?</span><span>Haven't decided<small>We can walk through the trade-offs</small></span></button>
+          </div>
+        </div>
+
+        <!-- 7: CONTACT -->
+        <div class="stepq" data-s="7">
+          <h2>Where should we send your DSCR breakdown?</h2>
+          <p class="qsub">We'll run your scenario &mdash; payment, rent needed, cash flow and ratio &mdash; and send it to you. No credit pull.</p>
+          <div class="field">
+            <label for="w_name">Your name</label>
+            <input type="text" id="w_name" autocomplete="name" placeholder="First and last name">
+          </div>
+          <div class="numgrid">
+            <div class="field">
+              <label for="w_phone">Phone</label>
+              <input type="tel" id="w_phone" inputmode="tel" autocomplete="tel" placeholder="(555) 123-4567">
+            </div>
+            <div class="field">
+              <label for="w_email">Email</label>
+              <input type="email" id="w_email" inputmode="email" autocomplete="email" placeholder="you@email.com">
+            </div>
+          </div>
+          <div class="field">
+            <label for="w_addr">Property address</label>
+            <input type="text" id="w_addr" placeholder="Address, or city &amp; state if you're still shopping">
+          </div>
+          <div class="werr" id="werr"></div>
+          <div class="wtrust">No credit pull &nbsp;&bull;&nbsp; One lender &nbsp;&bull;&nbsp; Your info is never resold</div>
+        </div>
+
+        <div class="wiz-nav" id="navRow">
+          <button type="button" class="btn btn-ghost" id="btnBack">&larr; Back</button>
+          <button type="button" class="btn btn-primary" id="btnNext">Continue &rarr;</button>
         </div>
       </div>
 
       <div class="wdone" id="wdoneview" hidden>
         <div class="big"><svg width="34" height="34" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.2 11.8 2.5 8.1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>Got it. Your breakdown is on the way.</h3>
-        <p>We'll run your scenario &mdash; payment, rent needed, cash flow and ratio &mdash; and get back to you within one business day.</p>
+        <h2>Got it. Your breakdown is on the way.</h2>
+        <p>We'll run your scenario and get back to you within one business day.</p>
         <div class="call">Want to talk now? Call <a href="tel:8884350314">(888) 435-0314</a></div>
       </div>
     </div>
+
+    <div class="underpanel">
+      <span><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.2 11.8 2.5 8.1" stroke="#D43426" stroke-width="2.4" stroke-linecap="round"/></svg>No tax returns required</span>
+      <span><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.2 11.8 2.5 8.1" stroke="#D43426" stroke-width="2.4" stroke-linecap="round"/></svg>20%+ down &middot; 620+ credit</span>
+      <span><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.2 11.8 2.5 8.1" stroke="#D43426" stroke-width="2.4" stroke-linecap="round"/></svg>SFR &middot; condos &middot; 2-4 units</span>
+      <span><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.2 11.8 2.5 8.1" stroke="#D43426" stroke-width="2.4" stroke-linecap="round"/></svg>DSCR Lending Nationwide</span>
+    </div>
   </div>
-</section>
+</div>
 
 <div class="band">
   <div class="slabel">Why Parity</div>
@@ -335,13 +312,11 @@ section{padding:74px 24px}
 <section>
   <div class="wrap">
     <div class="ccard">
-      <div class="ci">
-        <img src="data:image/png;base64,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" alt="Parity Lending" style="margin-bottom:12px">
-        <div class="t">DSCR Lending Nationwide</div>
-        <a href="tel:8884350314">(888) 435-0314</a>
-        <a href="mailto:info@paritylending.com">info@paritylending.com</a>
-        <div class="addr">30 N Gould St, Ste N<br>Sheridan, WY 82801</div>
-      </div>
+      <img src="data:image/png;base64,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" alt="Parity Lending">
+      <div class="t">DSCR Lending Nationwide</div>
+      <a href="tel:8884350314">(888) 435-0314</a>
+      <a href="mailto:info@paritylending.com">info@paritylending.com</a>
+      <div class="addr">30 N Gould St, Ste N<br>Sheridan, WY 82801</div>
     </div>
     <p class="legal">Business-purpose loans for non-owner-occupied investment property only. This is not a commitment to lend, a quote, or an offer of credit. Programs, terms and conditions are subject to change without notice, and all loans are subject to full underwriting and credit approval. Any figures you submit are used only to prepare your scenario review. RSS Financial Holdings LLC, doing business as Parity Lending.</p>
   </div>
@@ -349,55 +324,58 @@ section{padding:74px 24px}
 
 <script>
 (function(){
-  var form=document.getElementById('wiz');
-  var panels=form.querySelectorAll('.wpanel');
-  var dots=document.querySelectorAll('.wdot');
-  var cur=document.getElementById('wcur');
-  var err=document.getElementById('werr');
+  var S={goal:'',ptype:'',fico:'',ficoN:0,time:'',vest:''};
+  var cur=1, TOT=7;
+  var NAMES={1:'Your goal',2:'Property type',3:'The numbers',4:'Credit',5:'Timeline',6:'Vesting',7:'Send my numbers'};
+  var $=function(id){return document.getElementById(id)};
+  var qq=function(s){return document.querySelectorAll(s)};
   var INQ_URL='https://parity-inquiry.robschraderca.workers.dev/';
 
   function show(n){
-    panels.forEach(function(p){p.classList.toggle('on',+p.dataset.step===n)});
-    dots.forEach(function(d){var i=+d.dataset.dot;d.classList.remove('on','done');
-      if(i<n)d.classList.add('done');else if(i===n)d.classList.add('on')});
-    cur.textContent=n;
-    err.classList.remove('show');
-    if(window.innerWidth<960){
-      var top=document.getElementById('wcard').getBoundingClientRect().top+window.pageYOffset-70;
-      window.scrollTo({top:top,behavior:'smooth'});
-    }
+    cur=n;
+    qq('.stepq').forEach(function(el){el.classList.toggle('on', +el.dataset.s===n)});
+    $('bar').style.width=(n/TOT*100)+'%';
+    $('stepLbl').textContent='Step '+n+' of '+TOT;
+    $('stepName').textContent=NAMES[n];
+    $('btnBack').style.visibility = n===1 ? 'hidden' : 'visible';
+    $('btnNext').textContent = n===TOT ? 'Get my DSCR breakdown →' : 'Continue →';
+    $('werr').classList.remove('show');
+    window.scrollTo({top:$('wizPanel').offsetTop-72,behavior:'smooth'});
   }
 
-  document.querySelectorAll('.wopts[data-auto]').forEach(function(g){
-    var next=+g.dataset.auto;
-    g.querySelectorAll('.wopt').forEach(function(o){
-      o.addEventListener('click',function(){
-        g.querySelectorAll('.wopt').forEach(function(x){x.classList.remove('sel')});
-        o.classList.add('sel');
-        var inp=o.querySelector('input'); if(inp)inp.checked=true;
-        setTimeout(function(){show(next)},220);
-      });
-    });
-  });
+  function picked(n){
+    if(n===1)return !!S.goal; if(n===2)return !!S.ptype; if(n===4)return !!S.fico;
+    if(n===5)return !!S.time; if(n===6)return !!S.vest; return true;
+  }
+  function err(msg){var e=$('werr');e.textContent=msg;e.classList.add('show');
+    var p=document.querySelector('.stepq.on');
+    if(!p.contains(e)) p.appendChild(e);}
 
-  form.querySelectorAll('[data-go]').forEach(function(b){
+  qq('.opt').forEach(function(b){
     b.addEventListener('click',function(){
-      if(+b.dataset.go===4){
-        var r=+document.getElementById('w_rent').value||0,
-            v=+document.getElementById('w_price').value||0;
-        if(!r||!v){
-          err.textContent='Enter the monthly rent and the price or value so we can run your numbers.';
-          err.classList.add('show');
-          var p3=form.querySelector('[data-step="3"]');
-          if(!p3.contains(err)) p3.insertBefore(err, p3.querySelector('.wnav'));
-          return;
-        }
+      var k=b.dataset.k;
+      b.parentNode.querySelectorAll('.opt').forEach(function(o){o.classList.remove('sel')});
+      b.classList.add('sel');
+      S[k]=b.dataset.v.replace(/&amp;/g,'&');
+      if(k==='fico') S.ficoN=+b.dataset.n;
+      if(k==='goal'){
+        $('downLbl').textContent = S.goal==='Purchase' ? 'Down payment' : 'Equity position / target LTV';
       }
-      show(+b.dataset.go);
+      setTimeout(function(){ if(cur<TOT) show(cur+1); },230);
     });
   });
 
-  function checked(n){var el=form.querySelector('input[name="'+n+'"]:checked');return el?el.value:''}
+  $('btnBack').addEventListener('click',function(){ if(cur>1) show(cur-1); });
+
+  $('btnNext').addEventListener('click',function(){
+    if(cur===TOT){ submit(); return; }
+    if(!picked(cur)){ err('Pick one to continue.'); return; }
+    if(cur===3){
+      var r=+$('w_rent').value||0, v=+$('w_price').value||0;
+      if(!r||!v){ err('Enter the price and the monthly rent so we can run your numbers.'); return; }
+    }
+    show(cur+1);
+  });
 
   function rateFor(ltv,dscr){
     var r=ltv<=70?6.125:ltv<=75?6.25:6.49;
@@ -411,12 +389,11 @@ section{padding:74px 24px}
     return P*i/(1-Math.pow(1+i,-n));
   }
   function scenario(){
-    var v=+document.getElementById('w_price').value||0;
-    var r0=+document.getElementById('w_rent').value||0;
-    var d=+document.getElementById('w_down').value||25;
-    var ficoSel=document.getElementById('w_fico');
-    var ficoN=+ficoSel.value||0;
-    var ficoTxt=ficoSel.selectedIndex>0?ficoSel.options[ficoSel.selectedIndex].text:'';
+    var v=+$('w_price').value||0;
+    var rGross=+$('w_rent').value||0;
+    var isSTR=S.ptype==='Short-term rental';
+    var r0=isSTR?rGross*0.8:rGross;
+    var d=+$('w_down').value||25;
     var ltv=100-d,L=v*ltv/100;
     var tax=v*0.011/12,ins=v*0.0055/12;
     var rate=rateFor(ltv,1.15),pitia=0,dscr=0;
@@ -426,44 +403,37 @@ section{padding:74px 24px}
       rate=rateFor(ltv,dscr);
     }
     var resMonths=L>2500000?12:(L>1500000?6:3);
-    return {goal:checked('goal'),ptype:checked('ptype'),fico:ficoTxt,ficoN:ficoN,
-      price:v,rent:r0,downPct:d,ltv:ltv,loan:Math.round(L),
+    return {goal:S.goal,ptype:S.ptype,fico:S.fico,ficoN:S.ficoN,time:S.time,vest:S.vest,
+      price:v,rent:rGross,downPct:d,ltv:ltv,loan:Math.round(L),
       downPayment:Math.round(v*d/100),hoa:0,
       dscr:+dscr.toFixed(2),rate:+rate.toFixed(3),pitia:Math.round(pitia),
-      cashFlow:Math.round(r0-pitia),resMonths:resMonths,isSTR:false};
+      cashFlow:Math.round(r0-pitia),resMonths:resMonths,isSTR:isSTR};
   }
 
-  function fail(msg){err.textContent=msg;err.classList.add('show');
-    var p4=form.querySelector('[data-step="4"]');
-    if(!p4.contains(err)) p4.insertBefore(err, p4.querySelector('.wnav'));}
-
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var name=document.getElementById('w_name').value.trim(),
-        email=document.getElementById('w_email').value.trim(),
-        phone=document.getElementById('w_phone').value.trim(),
-        addr=document.getElementById('w_addr').value.trim();
-    if(!name||name.length<2)return fail('Please enter your name.');
-    if(phone.replace(/\D/g,'').length<10)return fail('Please enter a 10-digit phone number.');
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email))return fail('That email address doesn’t look right.');
-    if(!addr||addr.length<5)return fail('Please enter the property address, or the city and state.');
-    err.classList.remove('show');
-    var btn=document.getElementById('wsubmit');
+  function submit(){
+    var name=$('w_name').value.trim(), email=$('w_email').value.trim(),
+        phone=$('w_phone').value.trim(), addr=$('w_addr').value.trim();
+    if(!name||name.length<2)return err('Please enter your name.');
+    if(phone.replace(/\D/g,'').length<10)return err('Please enter a 10-digit phone number.');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email))return err('That email address doesn’t look right.');
+    if(!addr||addr.length<5)return err('Please enter the property address, or the city and state.');
+    $('werr').classList.remove('show');
+    var btn=$('btnNext');
     btn.disabled=true;btn.textContent='Sending…';
     fetch(INQ_URL,{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({name:name,email:email,phone:phone,address:addr,
         scenario:scenario(),page:location.href})})
     .then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.json()})
     .then(function(){
-      document.getElementById('wformview').hidden=true;
-      document.getElementById('wdoneview').hidden=false;
-      if(window.innerWidth<960)window.scrollTo({top:0,behavior:'smooth'});
+      $('wformview').hidden=true;
+      $('wdoneview').hidden=false;
+      window.scrollTo({top:0,behavior:'smooth'});
     })
     .catch(function(){
       btn.disabled=false;btn.textContent='Get my DSCR breakdown →';
-      fail('Something went wrong sending this. Please try again, or call (888) 435-0314.');
+      err('Something went wrong sending this. Please try again, or call (888) 435-0314.');
     });
-  });
+  }
 })();
 </script>
 </body>
