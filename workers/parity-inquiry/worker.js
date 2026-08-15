@@ -153,7 +153,7 @@ function leadEmailHtml(p, s) {
   <p style="color:#5A6484;font-size:13px;margin-top:0">info@paritylending.com</p>
   <p style="color:#8A91A6;font-size:11px;margin-top:22px">Business-purpose loans for non-owner-occupied investment
   property only. The numbers above are estimates from your own inputs, not an offer, quote, rate lock, or commitment
-  to lend. RSS Financial Holdings LLC dba Parity Lending.</p>
+  to lend.</p>
 </div>`;
 }
 
