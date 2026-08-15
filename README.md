@@ -37,6 +37,6 @@ The mouse cursor that was baked into the supplied screenshot has been removed
 and the white background converted to transparency.
 
 COMPLIANCE
-  Every page carries Equal Housing Lender, Ameritrust Mortgage Corporation
+  Every page carries Ameritrust Mortgage Corporation
   NMLS 217229, the not-a-commitment-to-lend language, and a rate disclaimer.
   All rates shown are labeled illustrative examples, not quotes.
