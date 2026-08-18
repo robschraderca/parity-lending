@@ -199,6 +199,10 @@ footer{padding:40px 0 60px;color:var(--slate);font-size:12px;text-align:center}
  video{display:block;width:100%;height:auto;background:#000}
  .car{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
  .car::-webkit-scrollbar{display:none}
+ .carwrap{position:relative}
+ .carbtn{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);border:0;box-shadow:0 2px 8px rgba(0,0,0,.25);font-size:18px;font-weight:900;color:#0E1B3D;cursor:pointer;z-index:2;display:grid;place-items:center}
+ .carbtn.l{left:8px}.carbtn.r{right:8px}
+ .dots i{cursor:pointer}
  .car img{flex:0 0 100%;scroll-snap-align:start;display:block;width:100%}
  .dots{display:flex;gap:5px;justify-content:center;padding:8px 0 2px;background:#fff}
  .dots i{width:6px;height:6px;border-radius:50%;background:#cfd4e0}.dots i.on{background:var(--navy)}
@@ -223,9 +227,9 @@ footer{padding:40px 0 60px;color:var(--slate);font-size:12px;text-align:center}
   <div>
    <span class="dl"><span class="t">Monday · Feed</span><span class="f">Master, photo state</span></span>
    <div class="phone"><div class="screen">
-    <div class="igbar"><span class="av"><svg viewBox="-33 -1 66 46"><polygon points="0,0 -31.5,31.5 -20,43 0,23" fill="#3B6FD4"/><polygon points="0,0 31.5,31.5 20,43 0,23" fill="#D93B2B"/></svg></span>paritylend</div>
+    <div class="igbar"><span class="av"><svg viewBox="-33 -1 66 46"><polygon points="0,0 -31.5,31.5 -20,43 0,23" fill="#3B6FD4"/><polygon points="0,0 31.5,31.5 20,43 0,23" fill="#D93B2B"/></svg></span>Parity Lending</div>
     <img src="parity-v8-04-notalead-A.png" style="display:block;width:100%">
-    <div class="cap"><b>paritylend</b> Quote sites sell your number to five call lists before you finish typing it. Here it's one lender, no call lists, and your information never leaves the building. DSCR home investor loans, qualified on the rent, not your tax returns. 20%+ down or equity, 620+ credit, no W-2s. Business-purpose loans on non-owner-occupied investment property only. <span class="u">paritylending.com/dscr</span></div>
+    <div class="cap"><b>Parity Lending</b> Quote sites sell your number to five call lists before you finish typing it. Here it's one lender, no call lists, and your information never leaves the building. DSCR home investor loans, qualified on the rent, not your tax returns. 20%+ down or equity, 620+ credit, no W-2s. Business-purpose loans on non-owner-occupied investment property only. <span class="u">paritylending.com/dscr</span></div>
    </div></div>
    <div class="note2">Friday repeats this slot with the flat state (B). Hashtags go in the first comment, never the caption.</div>
   </div>
@@ -252,12 +256,15 @@ footer{padding:40px 0 60px;color:var(--slate);font-size:12px;text-align:center}
   <div>
    <span class="dl"><span class="t">Thursday · Carousel</span><span class="f">The four things we look at</span></span>
    <div class="phone"><div class="screen">
-    <div class="igbar"><span class="av"><svg viewBox="-33 -1 66 46"><polygon points="0,0 -31.5,31.5 -20,43 0,23" fill="#3B6FD4"/><polygon points="0,0 31.5,31.5 20,43 0,23" fill="#D93B2B"/></svg></span>paritylend</div>
+    <div class="igbar"><span class="av"><svg viewBox="-33 -1 66 46"><polygon points="0,0 -31.5,31.5 -20,43 0,23" fill="#3B6FD4"/><polygon points="0,0 31.5,31.5 20,43 0,23" fill="#D93B2B"/></svg></span>Parity Lending</div>
+    <div class="carwrap">
     <div class="car" id="car">
      <img src="parity-v8-carousel-c1-card1.png"><img src="parity-v8-carousel-c1-card2.png"><img src="parity-v8-carousel-c1-card3.png"><img src="parity-v8-carousel-c1-card4.png"><img src="parity-v8-carousel-c1-card5.png"><img src="parity-v8-carousel-c1-card6.png">
     </div>
+    <button class="carbtn l" id="carl" aria-label="previous">‹</button><button class="carbtn r" id="carr" aria-label="next">›</button>
+    </div>
     <div class="dots" id="cardots"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
-    <div class="cap"><b>paritylend</b> Before anyone runs your credit or asks for a tax return, here's the whole test. Four things. If you tick all four, you're a fit. Swipe, save it, and check your numbers when you're ready. <span class="u">paritylending.com/dscr</span></div>
+    <div class="cap"><b>Parity Lending</b> Before anyone runs your credit or asks for a tax return, here's the whole test. Four things. If you tick all four, you're a fit. Swipe, save it, and check your numbers when you're ready. <span class="u">paritylending.com/dscr</span></div>
    </div></div>
    <div class="note2">Swipe or scroll sideways. This carousel is the standing Thursday post; the caption changes with the week's message.</div>
   </div>
@@ -266,7 +273,12 @@ footer{padding:40px 0 60px;color:var(--slate);font-size:12px;text-align:center}
  <script>
  (function(){
   var car=document.getElementById('car'),dots=document.querySelectorAll('#cardots i');
-  car.addEventListener('scroll',function(){var i=Math.round(car.scrollLeft/car.clientWidth);dots.forEach(function(d,k){d.classList.toggle('on',k===i)})});
+  function go(i){i=Math.max(0,Math.min(5,i));car.scrollTo({left:i*car.clientWidth,behavior:'smooth'})}
+  function idx(){return Math.round(car.scrollLeft/car.clientWidth)}
+  car.addEventListener('scroll',function(){var i=idx();dots.forEach(function(d,k){d.classList.toggle('on',k===i)})});
+  document.getElementById('carl').addEventListener('click',function(){go(idx()-1)});
+  document.getElementById('carr').addEventListener('click',function(){go(idx()+1)});
+  dots.forEach(function(d,k){d.addEventListener('click',function(){go(k)})});
   var st=document.getElementById('story'),imgs=st.querySelectorAll('img'),bars=st.querySelectorAll('.bars i'),stks=st.querySelectorAll('.stk'),cur=0,timer;
   function show(n){cur=(n+imgs.length)%imgs.length;imgs.forEach(function(im,k){im.classList.toggle('on',k===cur)});
    bars.forEach(function(b,k){b.classList.remove('on','done');if(k<cur)b.classList.add('done');if(k===cur){b.classList.add('on');var f=b.querySelector('b');f.style.animation='none';void f.offsetWidth;f.style.animation=''}});
