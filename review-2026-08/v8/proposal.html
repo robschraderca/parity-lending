@@ -1,0 +1,343 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Parity Lending · Where we are · Aug 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0E1B3D;--navy2:#162752;--red:#D93B2B;--blue:#3B6FD4;--slate:#5A6484;--mist:#F2F3F6;--bd:#DEE1E8;--w:#fff;--green:#1F7A54}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Montserrat,system-ui,sans-serif;color:var(--navy);background:var(--mist);line-height:1.5}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header{background:var(--navy);color:#fff;padding:64px 0 52px}
+header .lock{display:flex;align-items:center;gap:14px;font-size:22px;letter-spacing:4px}header .lock b{font-weight:800}
+header h1{font-size:40px;font-weight:900;margin:26px 0 8px;line-height:1.1}
+header p.sub{color:#c4cce2;font-size:16px;max-width:760px;margin:0}
+.rule{width:64px;height:5px;background:var(--red);margin:20px 0}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
+.kpi{background:var(--navy2);border-radius:16px;padding:18px 20px}
+.kpi .n{font-size:28px;font-weight:900;color:#fff;line-height:1.05}.kpi .l{font-size:12px;letter-spacing:2px;color:#c4cce2;margin-top:8px;text-transform:uppercase;font-weight:700}
+.kpi.red .n{color:#ff6b5b}
+nav.jump{background:var(--navy2);padding:14px 0}
+nav.jump .wrap{display:flex;flex-wrap:wrap;gap:8px}
+nav.jump a{color:#c4cce2;text-decoration:none;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:7px 12px;border-radius:999px;border:1px solid #2b3d6d}
+nav.jump a:hover{background:var(--red);color:#fff;border-color:var(--red)}
+section{padding:54px 0 10px}
+.eyebrow{font-size:12px;letter-spacing:3.5px;font-weight:700;color:var(--red);text-transform:uppercase}
+h2{font-size:30px;font-weight:900;margin:6px 0 10px;line-height:1.15}
+h3.sub{font-size:16px;letter-spacing:2px;text-transform:uppercase;color:var(--slate);margin:34px 0 14px;font-weight:800}
+p.lead{font-size:16px;color:var(--slate);max-width:800px;margin:0 0 26px}
+.card{background:#fff;border:1px solid var(--bd);border-radius:18px;padding:22px 24px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:820px){.grid2,.grid3,.grid4,.kpis{grid-template-columns:1fr 1fr}.cal{grid-template-columns:repeat(2,1fr)!important}.tl{grid-template-columns:repeat(3,1fr)!important}.gate{grid-template-columns:1fr!important}nav.jump{display:none}}
+@media(max-width:520px){.grid2,.grid3,.grid4,.kpis{grid-template-columns:1fr}.step{grid-template-columns:44px 1fr!important}.step .o{display:none}}
+.status{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:4px 9px;border-radius:999px;margin-bottom:9px}
+.s-live{background:#e4f3ec;color:var(--green);border:1px solid #bfe3d3}
+.s-wait{background:#fbe9e6;color:var(--red);border:1px solid #f1c7c1}
+.s-next{background:#eef2fb;color:var(--navy);border:1px solid #cfd9f2}
+.item b{display:block;font-size:15px;margin-bottom:4px}.item span{font-size:13px;color:var(--slate)}
+table.money{width:100%;border-collapse:collapse;font-size:14px}
+table.money th{text-align:left;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--slate);padding:0 0 10px;border-bottom:2px solid var(--bd)}
+table.money td{padding:11px 0;border-bottom:1px solid var(--bd)}
+table.money td.n{text-align:right;font-weight:800;font-variant-numeric:tabular-nums}
+table.money tr.tot td{border-bottom:0;padding-top:14px;font-weight:900;font-size:16px}
+table.money tr.tot td.n{color:var(--red)}
+.chart{display:flex;align-items:flex-end;gap:10px;height:170px;padding:10px 0 0;border-bottom:2px solid var(--bd)}
+.bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.bar i{display:block;width:100%;background:var(--navy);border-radius:8px 8px 0 0}
+.bar.b i{background:var(--red)}
+.bar em{font-style:normal;font-size:11px;color:var(--slate);margin-top:6px;font-weight:700}
+.bar .v{font-size:12px;font-weight:800;margin-bottom:6px}
+.legend{font-size:12px;color:var(--slate);margin-top:10px}.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin:0 6px 0 12px}
+.splitbar{display:flex;height:38px;border-radius:10px;overflow:hidden;margin:6px 0 10px}
+.splitbar span{display:grid;place-items:center;color:#fff;font-size:12px;font-weight:800}
+.gate{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.gate .card{border-top:5px solid var(--red)}
+.gate .card b{display:block;font-size:15px;margin-bottom:4px}.gate .card span{font-size:13px;color:var(--slate)}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+.day{background:#fff;border:1px solid var(--bd);border-radius:14px;padding:12px 12px 14px;min-height:104px}
+.day h4{margin:0 0 8px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--slate)}
+.pill{display:inline-block;font-size:11px;font-weight:700;padding:5px 9px;border-radius:999px;margin:2px 0}
+.p-feed{background:var(--navy);color:#fff}.p-story{background:#eef2fb;color:var(--navy);border:1px solid #cfd9f2}.p-reel{background:var(--red);color:#fff}.p-car{background:#fbe9e6;color:var(--red);border:1px solid #f1c7c1}
+.tl{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.tl .wk{background:#fff;border:1px solid var(--bd);border-radius:14px;padding:14px}
+.tl .wk .n{font-size:11px;letter-spacing:2px;color:var(--slate);font-weight:700}.tl .wk .m{font-size:15px;font-weight:800;margin:4px 0 4px}.tl .wk .why{font-size:12px;color:var(--slate)}
+.dd{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.dd .card h3{margin:0 0 10px;font-size:15px;letter-spacing:2px;text-transform:uppercase}
+.dd ul{margin:0;padding-left:18px;font-size:14px;color:var(--slate)}.dd li{margin:7px 0}
+.dd .no h3{color:var(--red)}.dd .yes h3{color:var(--green)}
+.steps{counter-reset:s}
+.step{display:grid;grid-template-columns:54px 1fr 160px;gap:14px;align-items:start;background:#fff;border:1px solid var(--bd);border-radius:14px;padding:14px 16px;margin-bottom:10px}
+.step .d{font-weight:900;color:var(--red);font-size:14px}.step .t{font-size:14px}.step .o{font-size:12px;color:var(--slate);text-align:right;font-weight:700}
+.step.mid .d{color:var(--navy)}
+.ask{background:var(--navy);color:#fff;border-radius:18px;padding:26px 28px;margin-bottom:14px;display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:start}
+.ask .num{font-size:38px;font-weight:900;color:#ff6b5b;line-height:.9}
+.ask b{display:block;font-size:19px;font-weight:900;margin-bottom:6px}
+.ask p{margin:0;font-size:14px;color:#c4cce2}
+.ask p.opt{margin-top:10px;color:#fff;font-size:14px;font-weight:700}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.btn{display:inline-block;background:var(--red);color:#fff;text-decoration:none;font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:14px 22px;border-radius:12px}
+.btn.alt{background:var(--navy)}
+.note{font-size:12px;color:var(--slate);margin-top:12px}
+footer{padding:40px 0 60px;color:var(--slate);font-size:12px;text-align:center}
+.tag{display:inline-block;background:var(--navy);color:#fff;font-size:11px;letter-spacing:2px;font-weight:700;padding:5px 10px;border-radius:999px;margin-bottom:10px}
+.tag.r{background:var(--red)}
+</style></head><body>
+
+<header><div class="wrap">
+ <div class="lock"><svg width="44" height="30" viewBox="-33 -1 66 46"><polygon points="0,0 -31.5,31.5 -20,43 0,23" fill="#3B6FD4"/><polygon points="0,0 31.5,31.5 20,43 0,23" fill="#D93B2B"/></svg><span><b>PARITY</b> LENDING</span></div>
+ <h1>Where we are, and where the ad spend goes</h1>
+ <div class="rule"></div>
+ <p class="sub">Everything that is built, everything that is running, every dollar of the first sixty days accounted for, and the three decisions that unlock the rest. Prepared August 21, 2026 for the Parity partnership.</p>
+ <div class="kpis">
+  <div class="kpi"><div class="n">24</div><div class="l">Finished assets, live</div></div>
+  <div class="kpi"><div class="n">$0</div><div class="l">Spent on ads to date</div></div>
+  <div class="kpi red"><div class="n">$300 to $500</div><div class="l">Per month, tier 1, boosts only</div></div>
+  <div class="kpi"><div class="n">3</div><div class="l">Decisions we need from you</div></div>
+ </div>
+</div></header>
+
+<nav class="jump"><div class="wrap">
+ <a href="#built">01 Built</a><a href="#creative">02 Creative</a><a href="#spend">03 Where the money goes</a><a href="#cadence">04 Cadence</a><a href="#closed">05 Closed</a><a href="#ask">06 What we need</a><a href="#next">07 Next 30 days</a>
+</div></nav>
+
+<section id="built"><div class="wrap">
+ <div class="eyebrow">01 · The build</div>
+ <h2>The machine is finished. It has not been switched on.</h2>
+ <p class="lead">Nothing below is a plan or a mockup. It is built, deployed and reachable today. The reason nothing has posted yet is that we do not want a single dollar or a single lead moving before the phone answers and before you have signed off on the creative.</p>
+
+ <h3 class="sub">Live and running</h3>
+ <div class="grid3">
+  <div class="card item"><span class="status s-live">Live</span><b>paritylending.com</b><span>Five pages, dual hosted. The 888 number and info@ address are sitewide. DSCR only, business purpose only, no consumer mortgage language anywhere.</span></div>
+  <div class="card item"><span class="status s-live">Live</span><b>The /dscr landing page</b><span>Six question wizard, no credit pull. Every ad and every caption points here. Nothing routes to Messenger.</span></div>
+  <div class="card item"><span class="status s-live">Live</span><b>Lead capture into the CRM</b><span>Wizard submissions create a contact with twelve loan detail fields, drop into the DSCR Intake pipeline, and fire confirmation email to the borrower and notification to us.</span></div>
+  <div class="card item"><span class="status s-live">Live</span><b>(888) 435-0314</b><span>Rings live, call recording on. Sitewide on the pages and ready to go on the Page and profiles.</span></div>
+  <div class="card item"><span class="status s-live">Live</span><b>Facebook Page</b><span>Owned inside the business portfolio, profile and cover set, bio and categories done, intro post pinned.</span></div>
+  <div class="card item"><span class="status s-live">Live</span><b>Instagram @paritylend</b><span>Business account, portfolio owned, linked to the Page. Ready to post the day you green light week one.</span></div>
+ </div>
+
+ <h3 class="sub">Built, sitting in the queue</h3>
+ <div class="grid3">
+  <div class="card item"><span class="status s-wait">Waiting on you</span><b>Twelve master ads</b><span>Six messages, two hero states each. On the review page for your keep, change or kill.</span></div>
+  <div class="card item"><span class="status s-wait">Waiting on you</span><b>The full week one set</b><span>A finished Reel, a six card carousel and a five frame Story set, all rendered from the same master. Playable on the plan page.</span></div>
+  <div class="card item"><span class="status s-wait">Waiting on you</span><b>Week one captions and calendar</b><span>Written, slotted day by day, ready to load into the scheduler the Monday after your verdicts.</span></div>
+ </div>
+
+ <h3 class="sub">Ours to finish, once the light is green</h3>
+ <div class="grid3">
+  <div class="card item"><span class="status s-next">Next</span><b>Ad account and tracking</b><span>Ad account inside the portfolio, pixel and conversions API on the site, five audiences created on day one so they start filling immediately.</span></div>
+  <div class="card item"><span class="status s-next">Next</span><b>Speed to lead</b><span>You back on the ring, voicemail greeting recorded, ring timeout set, six touch follow up cadence loaded.</span></div>
+  <div class="card item"><span class="status s-next">Next</span><b>The remaining cuts</b><span>Square and link preview sizes, Page cover, and the Reel and Story sets for the other five messages. All one run of the same generator.</span></div>
+ </div>
+</div></section>
+
+<section id="creative"><div class="wrap">
+ <div class="eyebrow">02 · The creative system</div>
+ <h2>One layout. Six messages. Every slot cut from the same file.</h2>
+ <p class="lead">This is the part that keeps the cost at zero and the brand consistent. There is one master layout. Six messages ride it. Two hero states, a photograph or a flat panel. Every other format, the Reel, the carousel, the Stories, the square, the link preview, the cover, is generated from that same master by script. When you change a line, everything downstream regenerates in one run. Nothing is designed twice and nothing is paid for twice.</p>
+ <div class="grid4">
+  <div class="card item"><b>DSCR HOME INVESTOR LOANS</b><span>At headline scale on every single asset, per your call on the fifteenth.</span></div>
+  <div class="card item"><b>No rates. No timing claims.</b><span>Not on one image, not in one caption. That rule holds everywhere.</span></div>
+  <div class="card item"><b>Every CTA goes to /dscr</b><span>No Messenger, no instant forms. The wizard is the only front door.</span></div>
+  <div class="card item"><b>One variable per test</b><span>Same layout, one thing changed at a time, so a result actually means something.</span></div>
+ </div>
+ <div class="btns">
+  <a class="btn" href="./">See the twelve master ads</a>
+  <a class="btn alt" href="./plan.html#week1">See week one, playable</a>
+ </div>
+</div></section>
+
+<section id="spend"><div class="wrap">
+ <div class="eyebrow">03 · Where the money goes</div>
+ <h2>About $650 over the first sixty days, and here is every dollar of it.</h2>
+ <p class="lead">Tier one is deliberately small. We are not buying leads yet. We are buying two things that make everything after this cheap: audiences we own, and a straight answer about which of six messages actually travels. The hard ceiling is $500 in any month. Nothing is spent on a post that has not already earned it organically.</p>
+
+ <h3 class="sub">The shape of it, week by week</h3>
+ <div class="grid2">
+  <div class="card">
+   <span class="tag">Days 1 to 60</span>
+   <div class="chart">
+    <div class="bar"><div class="v">$0</div><i style="height:2%"></i><em>Wk 1</em></div>
+    <div class="bar"><div class="v">$0</div><i style="height:2%"></i><em>Wk 2</em></div>
+    <div class="bar b"><div class="v">$85</div><i style="height:52%"></i><em>Wk 3</em></div>
+    <div class="bar b"><div class="v">$85</div><i style="height:52%"></i><em>Wk 4</em></div>
+    <div class="bar b"><div class="v">$120</div><i style="height:74%"></i><em>Wk 5</em></div>
+    <div class="bar b"><div class="v">$120</div><i style="height:74%"></i><em>Wk 6</em></div>
+    <div class="bar b"><div class="v">$120</div><i style="height:74%"></i><em>Wk 7</em></div>
+    <div class="bar b"><div class="v">$120</div><i style="height:74%"></i><em>Wk 8</em></div>
+   </div>
+   <div class="legend"><i style="background:var(--navy)"></i>organic only, no spend <i style="background:var(--red)"></i>boosts on posts that qualified at 48 hours</div>
+   <p class="note">Weeks one and two carry no spend on purpose. We post, we watch, and we prove a human answers the phone inside five minutes before we pay to send anyone to it.</p>
+  </div>
+  <div class="card">
+   <span class="tag r">Anatomy of one boost</span>
+   <table class="money">
+    <tr><th>Setting</th><th style="text-align:right">Amount</th></tr>
+    <tr><td>Daily budget</td><td class="n">$10 to $15</td></tr>
+    <tr><td>Run length</td><td class="n">5 to 7 days</td></tr>
+    <tr><td>Cost of one boost</td><td class="n">$50 to $105</td></tr>
+    <tr><td>Maximum live at once</td><td class="n">2</td></tr>
+    <tr class="tot"><td>Boosts in a typical month</td><td class="n">4 to 6</td></tr>
+   </table>
+   <p class="note">A post only becomes eligible at the 48 hour mark, and only if its hook rate or click rate is in the top third of what we have posted. Most posts will never get a dollar. That is the point of the rule.</p>
+  </div>
+ </div>
+
+ <h3 class="sub">The sixty day total</h3>
+ <div class="grid2">
+  <div class="card">
+   <table class="money">
+    <tr><th>Period</th><th>What runs</th><th style="text-align:right">Spend</th></tr>
+    <tr><td>Weeks 1 to 2</td><td>Organic only</td><td class="n">$0</td></tr>
+    <tr><td>Weeks 3 to 4</td><td>One boost at a time</td><td class="n">$170</td></tr>
+    <tr><td>Weeks 5 to 8</td><td>Up to two boosts live</td><td class="n">$480</td></tr>
+    <tr class="tot"><td>First sixty days</td><td></td><td class="n">about $650</td></tr>
+   </table>
+   <p class="note">That averages $325 a month against a $500 ceiling. If fewer posts qualify, we spend less. We do not spend the budget just because it is there.</p>
+  </div>
+  <div class="card">
+   <b style="display:block;font-size:15px;margin-bottom:8px">How that $650 splits by job</b>
+   <div class="splitbar"><span style="width:40%;background:var(--red)">40% Reels</span><span style="width:60%;background:var(--navy)">60% feed and carousel</span></div>
+   <p style="font-size:13px;color:var(--slate);margin:0 0 8px"><b style="color:var(--navy)">About $260 on Reels,</b> bought on a video views objective. Cheap reach, and it is what fills the retargeting pools we own afterward.</p>
+   <p style="font-size:13px;color:var(--slate);margin:0"><b style="color:var(--navy)">About $390 on feed posts and carousels,</b> bought on traffic straight to the /dscr wizard. This is the half that produces landing views and started applications.</p>
+   <p class="note">Geography is Ohio, South Carolina, Georgia, Texas, Florida and North Carolina. The budget is not split evenly across them. Lending ads sit in a restricted category, so we cannot target by interest or income, which means the creative does the filtering and the money follows whichever post is working, wherever it is working.</p>
+  </div>
+ </div>
+
+ <h3 class="sub">What that money actually buys</h3>
+ <div class="grid4">
+  <div class="card item"><b>Page and profile engagers</b><span>Everyone who touched the Page or the Instagram account in the last 365 days.</span></div>
+  <div class="card item"><b>Video viewers</b><span>Everyone past 25% and past 75% of a Reel. The strongest signal we can get without a form.</span></div>
+  <div class="card item"><b>Site visitors</b><span>180 days of everyone who landed on paritylending.com.</span></div>
+  <div class="card item"><b>Wizard starters</b><span>30 days of everyone who opened /dscr. The warmest list we will have.</span></div>
+ </div>
+ <p class="lead" style="margin-top:18px">Those four pools are the asset. Sixty days of small money fills them, and once each is past roughly a thousand people, retargeting them is a fraction of the cost of reaching a cold investor. That is why tier one looks so small. We are buying the cheap version of the audience before we buy volume.</p>
+
+ <h3 class="sub">What the partnership is not paying for</h3>
+ <div class="dd">
+  <div class="card yes">
+   <h3>Already covered, no invoice</h3>
+   <ul>
+    <li>All creative production. Twelve master ads, a Reel, a carousel, a Story set, built in house and regenerated by script whenever copy changes.</li>
+    <li>The website, the /dscr landing page and both hosting paths.</li>
+    <li>The CRM, the pipeline, the twelve loan detail fields, the forms, the routing and the call recording.</li>
+    <li>The phone number and the routing behind it.</li>
+    <li>Strategy, scheduling, reporting and the build work itself. This is a partnership, not a retainer.</li>
+   </ul>
+  </div>
+  <div class="card no">
+   <h3>Deliberately not spent</h3>
+   <ul>
+    <li>No agency or media buyer fee.</li>
+    <li>No purchased leads and no lead list buys.</li>
+    <li>No cold prospecting spend. Every dollar boosts something that already proved itself organically.</li>
+    <li>No spend at all until the phone answers inside five minutes.</li>
+    <li>No second layout, no design experiments. One master until the numbers justify a challenger.</li>
+   </ul>
+  </div>
+ </div>
+
+ <h3 class="sub">The rules the money runs under</h3>
+ <div class="grid3">
+  <div class="card item"><b>Qualify</b><span>Top third hook rate on Reels, or top third click rate on feed posts, measured at 48 hours. Below that, no money.</span></div>
+  <div class="card item"><b>Kill</b><span>Click rate under half the account average after $30 spent, or the wrong audience showing up in the comments. Money moves to the next post the same day.</span></div>
+  <div class="card item"><b>Read</b><span>Hook rate, thruplay, link click rate, cost per landing view, wizard starts. At this budget, cost per lead is a guardrail, not a scoreboard.</span></div>
+ </div>
+
+ <h3 class="sub">The gate to tier two, $1,000 to $2,500 a month</h3>
+ <p class="lead">We do not raise the budget on a hunch. All three of these have to be true at day sixty, or tier one runs another month.</p>
+ <div class="gate">
+  <div class="card"><b>Five minute answer, proven</b><span>Real inbound answered inside five minutes for four straight weeks. You back on the ring, voicemail live.</span></div>
+  <div class="card"><b>Audiences past a thousand each</b><span>Video view and engagement pools large enough to be worth retargeting.</span></div>
+  <div class="card"><b>One message visibly ahead</b><span>Fifty percent better on two of three reads. Anything smaller than that is noise at this volume.</span></div>
+ </div>
+</div></section>
+
+<section id="cadence"><div class="wrap">
+ <div class="eyebrow">04 · Cadence</div>
+ <h2>One message a week, both platforms, every day with a job.</h2>
+ <p class="lead">The same message runs all seven days. Only the format changes. That is what makes a week of posting readable as a test instead of a pile of content.</p>
+ <div class="cal">
+  <div class="day"><h4>Mon</h4><span class="pill p-feed">Feed, photo state</span></div>
+  <div class="day"><h4>Tue</h4><span class="pill p-story">Stories, 5 frames</span></div>
+  <div class="day"><h4>Wed</h4><span class="pill p-reel">Reel</span></div>
+  <div class="day"><h4>Thu</h4><span class="pill p-car">Carousel</span></div>
+  <div class="day"><h4>Fri</h4><span class="pill p-feed">Feed, flat state</span></div>
+  <div class="day"><h4>Sat</h4><span class="pill p-reel">Reel, second cut</span></div>
+  <div class="day"><h4>Sun</h4><span class="pill p-story">Stories recap</span></div>
+ </div>
+ <h3 class="sub">Six weeks, six messages, in this order</h3>
+ <div class="tl">
+  <div class="wk"><div class="n">Week 1</div><div class="m">Not a lead</div><div class="why">Strongest concept in your feedback. Leads with the relationship, not the product.</div></div>
+  <div class="wk"><div class="n">Week 2</div><div class="m">Negation</div><div class="why">What we do not ask for. No tax returns, no W2, no employment.</div></div>
+  <div class="wk"><div class="n">Week 3</div><div class="m">Hard money</div><div class="why">The switch away from short term expensive money. First boosts allowed here.</div></div>
+  <div class="wk"><div class="n">Week 4</div><div class="m">Rehab</div><div class="why">Speaks to the investor who just finished a project and needs to take out.</div></div>
+  <div class="wk"><div class="n">Week 5</div><div class="m">Spec sheet</div><div class="why">The straight numbers post for the audience that only wants terms.</div></div>
+  <div class="wk"><div class="n">Week 6</div><div class="m">Serious</div><div class="why">Filters tire kickers out before they reach the phone.</div></div>
+ </div>
+ <p class="note">Weeks seven through twelve repeat the same six with the hero state swapped, so we get a clean read on photograph against flat panel across every message.</p>
+</div></section>
+
+<section id="closed"><div class="wrap">
+ <div class="eyebrow">05 · Tested and closed</div>
+ <h2>What we already tried, what it cost, and why it is shut off.</h2>
+ <div class="grid2">
+  <div class="card item"><span class="status s-wait">Closed</span><b>Cold email to property owners</b><span>Over two thousand emails sent across five test campaigns and zero real replies. We traced it to the contact data, not the copy. The email addresses coming back from skip tracing matched the actual owner only about eight percent of the time, which means the messages were reaching the wrong people. All five campaigns are paused. We stopped rather than keep buying data that does not identify the person.</span></div>
+  <div class="card item"><span class="status s-wait">Parked</span><b>AI voice answering</b><span>Built and the script approved, then shelved on purpose. Handing a real investor to a machine on the first call is the wrong trade at this volume. It comes back in phase two if call volume outruns us.</span></div>
+ </div>
+ <p class="note">Both of these are here for one reason. The reason the ad budget is small and gated is that we have already paid for the lesson about spending ahead of proof.</p>
+</div></section>
+
+<section id="ask"><div class="wrap">
+ <div class="eyebrow">06 · What we need from you</div>
+ <h2>Three decisions. Everything else is already done.</h2>
+ <div class="ask">
+  <div class="num">1</div>
+  <div>
+   <b>Keep, change or kill on the twelve ads</b>
+   <p>Go through the review page and give a verdict per message. Also tell us whether you prefer the photograph hero or the flat panel. This is the single blocker. Captions, the schedule, the Reel and the Story set all regenerate from your answers in one run.</p>
+   <p class="opt">Reply with six lines. Message one keep, message two change this line, and so on.</p>
+  </div>
+ </div>
+ <div class="ask">
+  <div class="num">2</div>
+  <div>
+   <b>The phone, before anything posts</b>
+   <p>You need to be back on the 888 routing so calls ring both of us at once, and we need the voicemail greeting recorded in your voice. Nothing goes live and no dollar is spent until inbound is answered inside five minutes. This is also the first of the three gates to a bigger budget.</p>
+   <p class="opt">Two items. Confirm you are back on the ring, and record about twenty seconds of greeting.</p>
+  </div>
+ </div>
+ <div class="ask">
+  <div class="num">3</div>
+  <div>
+   <b>The ad budget, and whose card funds it</b>
+   <p>Tier one is $300 to $500 a month for the first sixty days, boosts only, roughly $650 in total. We need a yes on the number and on which account funds the ad spend. There is no other money in this. Everything else on this page is already paid for.</p>
+   <p class="opt">Pick the monthly number, $300, $400 or $500, and tell us which card goes on the ad account.</p>
+  </div>
+ </div>
+</div></section>
+
+<section id="next"><div class="wrap">
+ <div class="eyebrow">07 · The next 30 days</div>
+ <h2>Dated, owned, in order.</h2>
+ <p class="lead">This assumes your verdicts land this week. Every date slides by the same number of days that answer slides.</p>
+ <div class="steps">
+  <div class="step"><div class="d">Aug 21</div><div class="t">You review the twelve ads and answer the three questions above.</div><div class="o">Michael</div></div>
+  <div class="step mid"><div class="d">Aug 22</div><div class="t">Apply your verdicts, regenerate the master set and the whole week one bundle.</div><div class="o">Rob</div></div>
+  <div class="step mid"><div class="d">Aug 22</div><div class="t">Ad account inside the portfolio, pixel and conversions API on the site, five audiences created so they start filling from day one.</div><div class="o">Rob</div></div>
+  <div class="step"><div class="d">Aug 22</div><div class="t">Phone fixes. Back on the ring, greeting recorded, ring timeout set.</div><div class="o">Both</div></div>
+  <div class="step mid"><div class="d">Aug 24</div><div class="t">Week one goes live. Not a lead, all seven slots, both platforms. Page cover and Instagram highlights up the same day. No spend.</div><div class="o">Rob</div></div>
+  <div class="step mid"><div class="d">Aug 31</div><div class="t">Week two, negation. Still no spend. Read the first full week of numbers.</div><div class="o">Rob</div></div>
+  <div class="step"><div class="d">Sep 7</div><div class="t">Week three, hard money. First boosts allowed, on qualifying posts only.</div><div class="o">Rob</div></div>
+  <div class="step mid"><div class="d">Sep 14</div><div class="t">Week four, rehab. Second boost slot opens if the first is performing.</div><div class="o">Rob</div></div>
+  <div class="step"><div class="d">Sep 18</div><div class="t">Thirty day read. What each message did, what each dollar did, what changes.</div><div class="o">Both</div></div>
+ </div>
+ <div class="btns">
+  <a class="btn" href="./">Review the twelve ads</a>
+  <a class="btn alt" href="./plan.html">Open the full plan</a>
+ </div>
+</div></section>
+
+<footer><div class="wrap">
+ Parity Lending · DSCR Lending Nationwide<br>
+ Business purpose loans for non owner occupied investment property only.<br>
+ Prepared August 21, 2026. Internal partnership document, not for distribution.
+</div></footer>
+</body></html>
