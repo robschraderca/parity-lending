@@ -437,12 +437,13 @@ src="https://www.facebook.com/tr?id=1710267053528341&ev=PageView&noscript=1"
     $('werr').classList.remove('show');
     var btn=$('btnNext');
     btn.disabled=true;btn.textContent='Sending…';
+    var eid=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():String(Date.now())+Math.random();
     fetch(INQ_URL,{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({name:name,email:email,phone:phone,address:addr,
-        scenario:scenario(),page:location.href})})
+        scenario:scenario(),page:location.href,event_id:eid})})
     .then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.json()})
     .then(function(){
-      if(window.fbq)fbq('track','Lead');
+      if(window.fbq)fbq('track','Lead',{},{eventID:eid});
       $('wformview').hidden=true;
       $('wdoneview').hidden=false;
       window.scrollTo({top:0,behavior:'smooth'});
