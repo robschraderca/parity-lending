@@ -6,6 +6,7 @@
 // 4) emails internal alerts to ALERT_EMAILS
 
 const GHL = 'https://services.msgsndr.com';
+const PIXEL_ID = '1710267053528341';
 const ALLOWED_ORIGINS = [
   'https://paritylending.com',
   'https://www.paritylending.com',
@@ -197,6 +198,37 @@ async function upsertContact(env, fields, p, tags, source) {
   return data.contact?.id || data.contact?._id || data.id;
 }
 
+async function sha256(s) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// Server-side CAPI Lead event, deduped with the browser pixel Lead via event_id.
+// Requires secret META_CAPI_TOKEN (the system user token). No-op if unset.
+async function capiLead(env, request, p) {
+  if (!env.META_CAPI_TOKEN) return 'skipped: no token';
+  const digits = String(p.phone).replace(/\D/g, '');
+  const user_data = {
+    em: [await sha256(p.email.trim().toLowerCase())],
+    ph: [await sha256(digits.length === 10 ? '1' + digits : digits)],
+    client_ip_address: request.headers.get('CF-Connecting-IP') || undefined,
+    client_user_agent: request.headers.get('User-Agent') || undefined,
+  };
+  const body = new URLSearchParams();
+  body.set('data', JSON.stringify([{
+    event_name: 'Lead',
+    event_time: Math.floor(Date.now() / 1000),
+    event_id: p.event_id || undefined,
+    action_source: 'website',
+    event_source_url: p.page || 'https://paritylending.com/dscr',
+    user_data,
+  }]));
+  body.set('access_token', env.META_CAPI_TOKEN);
+  const res = await fetch(`https://graph.facebook.com/v23.0/${PIXEL_ID}/events`, { method: 'POST', body });
+  const out = await res.json();
+  return out.events_received === 1 ? 'sent' : JSON.stringify(out.error || out).slice(0, 200);
+}
+
 export default {
   async fetch(request, env) {
     const origin = request.headers.get('Origin') || '';
@@ -250,6 +282,10 @@ export default {
           result.emails.alerts.push(addr + ': sent');
         } catch (e) { result.emails.alerts.push(addr + ': ' + String(e.message).slice(0, 200)); }
       }
+
+      // 5) server-side CAPI Lead (never blocks the response outcome)
+      try { result.capi = await capiLead(env, request, p); }
+      catch (e) { result.capi = String(e.message).slice(0, 200); }
 
       return json(result, 200, origin);
     } catch (e) {
