@@ -124,6 +124,23 @@ section{padding:70px 22px}
 @media(max-width:960px){.bgrid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:620px){section{padding:50px 16px}.bgrid{grid-template-columns:1fr;gap:14px}.band{padding:58px 16px}.ccard{padding:26px 20px}}
 </style>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1710267053528341');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1710267053528341&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel -->
 </head>
 <body>
 
@@ -425,6 +442,7 @@ section{padding:70px 22px}
         scenario:scenario(),page:location.href})})
     .then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.json()})
     .then(function(){
+      if(window.fbq)fbq('track','Lead');
       $('wformview').hidden=true;
       $('wdoneview').hidden=false;
       window.scrollTo({top:0,behavior:'smooth'});
